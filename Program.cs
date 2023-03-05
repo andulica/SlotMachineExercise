@@ -1,15 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Numerics;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.ConstrainedExecution;
-using System.Runtime.Intrinsics.X86;
-using System.Security.Cryptography;
-using System.Text.RegularExpressions;
-using System.Threading;
-
+﻿
 namespace SlotMachineExercise
 {
     internal class Program
