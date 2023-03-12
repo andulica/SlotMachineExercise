@@ -4,28 +4,24 @@ namespace SlotMachineExercise
     internal class Program
     {
 
-        private static int p1 = 0;
-        private static int p2 = 0;
-        private static int sum = 0;
-
-
+        const int MAX_NUMBER_FOR_A_LINE = 8;
+        const int COUNTER_TO_CHECK_HORIZONTAL = 1;
+        const int COUNTER_TO_CHECK_VERTICAL = 4;
+        const int GRID_SIZE = 3;
         static void Main(string[] args)
         {
-
+            //Populates a 2D array representing the screen of the slotmachine
             Random rnd = new Random();
-            int[,] screen = new int[3, 3];
-            for (int i = 0; i < 3; i++)
+            int[,] screen = new int[GRID_SIZE, GRID_SIZE];
+            for (int i = 0; i < GRID_SIZE; i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < GRID_SIZE; j++)
                 {
-                    screen[i, j] = rnd.Next(1, 3);
-
+                    screen[i, j] = rnd.Next(1, GRID_SIZE);
                 }
             }
 
             List<int> listChosenLines = new List<int>();
-            bool start = false;
-
 
             Console.WriteLine(
                 " \n        7            8  " +
@@ -39,164 +35,142 @@ namespace SlotMachineExercise
                 " \n           |   |   |    " +
                 " \n           4   5   6    ");
 
+            Console.WriteLine("Please select how much you want to gamble: ");
+            int gambleSum = Convert.ToInt32(Console.ReadLine());
 
-
+            bool start = false;
+            //loops until player decides to start. He needs to choose atleast 1 line
             while (!start)
-
             {
+                Console.WriteLine("Each line is $1 bet. Please enter the coresponding number for each line that you want to play: ");
 
-                Console.WriteLine("Please enter the number corresponding for each line." +
-                    "\n For each line it would be 1 USD bet: ");
                 int chosenLine = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine();
 
-                if (chosenLine <= 8 && chosenLine > 0)
+                if (chosenLine <= MAX_NUMBER_FOR_A_LINE && chosenLine > 0 && !listChosenLines.Contains(chosenLine))
                 {
                     listChosenLines.Add(chosenLine);
                 }
                 else
                 {
-                    Console.WriteLine("Please enter a number from 0 to 8: ");
+                    Console.WriteLine("Please enter a number from 1 to 8!" +
+                        "\nAlso no repeating lines allowed! ");
                 }
-
-
 
                 Console.WriteLine("If you want to enter more lines, press Enter. If not , enter Start: ");
                 string checkUser = Convert.ToString(Console.ReadLine().ToLower());
 
-                if (checkUser == "start")
+                if (checkUser == "start" && listChosenLines.Count >= 1)
                 {
-
                     start = true;
                 }
-
             }
-
-            Console.WriteLine("Please select how much you want to gamble: ");
-            int gambleSum = Convert.ToInt32(Console.ReadLine());
-
 
             printArray(screen);
 
-            if (listChosenLines.Count <= gambleSum)
+            int sumWon = 0;
+
+            Console.WriteLine("The lines you chose to play are:  ");
+            foreach (int line in listChosenLines)
             {
-                for (int i = 0; i < listChosenLines.Count; i++)
+                Console.Write($" {line} ");
+            }
+            Console.WriteLine();
+
+
+
+            for (int i = 0; i < listChosenLines.Count; i++)
+            {
+                if (gambleSum >= listChosenLines.Count)
                 {
-                    if (listChosenLines[i] == 1)
+                    if (listChosenLines[i] <= 3)
                     {
-                        checkHorizontal(screen);
-                    }
-                    else if (listChosenLines[i] == 2)
-                    {
-                        checkHorizontal(screen);
-                    }
-                    else if (listChosenLines[i] == 3)
-                    {
-                        checkHorizontal(screen);
-                    }
-                    else if (listChosenLines[i] == 4)
-                    {
-                        checkVertical(screen);
-                    }
-                    else if (listChosenLines[i] == 5)
-                    {
-                        checkVertical(screen);
-                    }
-                    else if (listChosenLines[i] == 6)
-                    {
-                        checkVertical(screen);
-                    }
-                    else if (listChosenLines[i] == 7)
-                    {
-                        checkDiagonal1(screen);
-                    }
-                    else if (listChosenLines[i] == 8)
-                    {
-                        checkDiagonal2(screen);
+                        sumWon += checkHorizontal(screen, listChosenLines[i] - COUNTER_TO_CHECK_HORIZONTAL);
                     }
 
+                    if (listChosenLines[i] > 3 && listChosenLines[i] <= 6)
+                    {
+                        sumWon += checkVertical(screen, listChosenLines[i] - COUNTER_TO_CHECK_VERTICAL);
+                    }
+
+                    if (listChosenLines[i] == 7)
+                    {
+                        sumWon += checkDiagonal1(screen);
+                    }
+
+                    if (listChosenLines[i] == 8)
+                    {
+                        sumWon += checkDiagonal2(screen);
+                    }
                 }
-
+                else
+                {
+                    Console.WriteLine("Insuficient funds!");
+                }
             }
 
-            else
-            {
-                Console.WriteLine("Insuficient funds: ");
-            }
+            Console.WriteLine($"You have won in total:{sumWon} USD! ");
 
-            Console.WriteLine("You have won in total: " + sum + " USD! ");
+            int totalSum = (gambleSum - listChosenLines.Count) + sumWon;
 
+            Console.WriteLine($"Total funds left = {totalSum} USD! ");
         }
 
 
+        //prints the screen of the slotmachine to the console
         public static void printArray(int[,] twoDArray)
         {
-
             for (int i = 0; i < 3; i++)
             {
                 for (int k = 0; k < 3; k++)
                 {
                     Console.Write(" " + twoDArray[i, k] + " ");
-
-
                 }
-
                 Console.WriteLine();
-
             }
-
         }
 
-
-        public static int checkHorizontal(int[,] twoDArray)
+        //Checks if player won on horizontal lines
+        public static int checkHorizontal(int[,] twoDArray, int lineToCheck)
         {
-            if (twoDArray[p1, p2] == twoDArray[p1, p2 + 1] && twoDArray[p1, p2] == twoDArray[p1, p2 + 2])
+            if (twoDArray[lineToCheck, 0] == twoDArray[lineToCheck, 1] && twoDArray[lineToCheck, 0] == twoDArray[lineToCheck, 2])
             {
-                sum += 1;
-                Console.WriteLine("This is horizontal");
+                return 1;
             }
-            return sum;
+            return 0;
         }
 
-
-        public static int checkVertical(int[,] twoDArray)
+        //Checks if player won on vertical lines
+        public static int checkVertical(int[,] twoDArray, int lineToCheck)
         {
-
-            if (twoDArray[p1, p2] == twoDArray[p1 + 1, p2] && twoDArray[p1, p2] == twoDArray[p1 + 2, p2])
+            if (twoDArray[0, lineToCheck] == twoDArray[1, lineToCheck] && twoDArray[0, lineToCheck] == twoDArray[2, lineToCheck])
             {
-                sum += 1;
                 Console.WriteLine("This is vertical");
+                return 1;
             }
-
-
-            return sum;
+            return 0;
         }
 
+        //Checks if player won on diagonal from top left corner to bottom right corner
         public static int checkDiagonal1(int[,] twoDArray)
         {
-
-            if (twoDArray[p1, p2] == twoDArray[p1 + 1, p2 + 1] && twoDArray[p1, p2] == twoDArray[p1 + 2, p2 + 2])
+            if (twoDArray[0, 0] == twoDArray[1, 1] && twoDArray[0, 0] == twoDArray[2, 2])
             {
-                sum += 1;
-                Console.WriteLine("This is diagonal1");
+                Console.WriteLine("This is diagonal");
+                return 1;
             }
-
-
-            return sum;
+            return 0;
         }
 
+        //Checks if player won on diagonal from top right corner to bottom left corner
         public static int checkDiagonal2(int[,] twoDArray)
         {
-
-            if (twoDArray[p1, p2 + 2] == twoDArray[p1 + 1, p2 + 1] && twoDArray[p1, p2 + 2] == twoDArray[p1 + 2, p2])
+            if (twoDArray[0, 2] == twoDArray[1, 1] && twoDArray[0, 2] == twoDArray[2, 0])
             {
-                sum += 1;
                 Console.WriteLine("This is diagonal2");
+                return 1;
             }
-
-
-            return sum;
+            return 0;
         }
-
     }
 }
