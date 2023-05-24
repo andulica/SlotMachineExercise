@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\abala\\source\\repos\\SlotMachineExercise\\SlotMachineExercise.csproj": {}
+    "C:\\Users\\abala\\source\\repos\\SlotMachineExercise\\SlotMachineExercise\\SlotMachineExercise.csproj": {}
   },
   "projects": {
-    "C:\\Users\\abala\\source\\repos\\SlotMachineExercise\\SlotMachineExercise.csproj": {
+    "C:\\Users\\abala\\source\\repos\\SlotMachineExercise\\SlotMachineExercise\\SlotMachineExercise.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\abala\\source\\repos\\SlotMachineExercise\\SlotMachineExercise.csproj",
+        "projectUniqueName": "C:\\Users\\abala\\source\\repos\\SlotMachineExercise\\SlotMachineExercise\\SlotMachineExercise.csproj",
         "projectName": "SlotMachineExercise",
-        "projectPath": "C:\\Users\\abala\\source\\repos\\SlotMachineExercise\\SlotMachineExercise.csproj",
+        "projectPath": "C:\\Users\\abala\\source\\repos\\SlotMachineExercise\\SlotMachineExercise\\SlotMachineExercise.csproj",
         "packagesPath": "C:\\Users\\abala\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\abala\\source\\repos\\SlotMachineExercise\\obj\\",
+        "outputPath": "C:\\Users\\abala\\source\\repos\\SlotMachineExercise\\SlotMachineExercise\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\abala\\AppData\\Roaming\\NuGet\\NuGet.Config",
