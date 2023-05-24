@@ -1,5 +1,6 @@
 ﻿namespace SlotMachineExercise
 {
+    //comment line to test the commit
     internal class GUI
     {
         private const int GRID_SIZE = 3;
