@@ -7,13 +7,13 @@
         private const int MAX_LINE_TO_PLAY = 8;
        
         //Prints to the console welcome message
-        public static void welcomeMessage()
+        public static void WelcomeMessage()
         {
             Console.WriteLine("Welcome to SlotsMachine Ultimate Experience! ");
         }
 
         //Gets user input and checks if the amount of money is composed of numbers only. If so, is being accepted as a valid input
-        public static int moneyToPlay()
+        public static int MoneyToPlay()
         {
             String moneyToPlayString = "";
             int moneyToPlay;
@@ -37,7 +37,7 @@
         }
 
         //Prints the bet options for user to the console
-        public static void printOptions()
+        public static void PrintOptions()
         {
             Console.WriteLine(
                 " \n        7            8  " +
@@ -54,7 +54,7 @@
 
 
         //prints the screen of the slotmachine to the console
-        public static void printScreen(int[,] screen)
+        public static void DisplayGrid(int[,] screen)
         {
             for (int row = 0; row < 3; row++)
             {
@@ -67,7 +67,7 @@
         }
 
         //takes user Lines and adds them to a list. If the list is
-        public static List<int> chooseLines()
+        public static List<int> ChooseLines()
         {
             List<int> chosenLines = new List<int>();
             int chosenLine = 0;

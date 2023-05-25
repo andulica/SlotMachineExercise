@@ -8,11 +8,11 @@
             List<int> newLinesToPlay = new List<int>();           
             bool previousSpinSuccessful = false;
 
-            GUI.welcomeMessage();
-            GUI.printOptions();
-            List<int> linesToPlay = new (GUI.chooseLines());
-            int credits = GUI.moneyToPlay();
-            int[,] screen = GameLogic.populateScreen();
+            GUI.WelcomeMessage();
+            GUI.PrintOptions();
+            List<int> linesToPlay = new (GUI.ChooseLines());
+            int credits = GUI.MoneyToPlay();
+            int[,] screen = GameLogic.PopulateGrid();
             bool continueGame = true;
 
 
@@ -21,8 +21,8 @@
             {
                 if (previousSpinSuccessful == false)
                 {
-                    creditsLeftAfterSpin = GameLogic.allLinesChecker(linesToPlay, credits, screen);
-                    GUI.printScreen(screen);
+                    creditsLeftAfterSpin = GameLogic.AllLinesChecker(linesToPlay, credits, screen);
+                    GUI.DisplayGrid(screen);
                 }
 
                 Console.WriteLine("If you wish to continue with the same gamble, please press 'y.' \nAlternatively, if you prefer to modify your playing values, press 'm'.");
@@ -31,14 +31,14 @@
 
                 if (userChecker.Equals("m"))
                 {
-                    newLinesToPlay = new(GUI.chooseLines());
+                    newLinesToPlay = new(GUI.ChooseLines());
                     if (creditsLeftAfterSpin < newLinesToPlay.Count)
                     {
-                        creditsLeftAfterSpin = +GUI.moneyToPlay();
+                        creditsLeftAfterSpin = +GUI.MoneyToPlay();
                     }
-                    int[,] newScreen = GameLogic.populateScreen();
-                    creditsLeftAfterSpin = GameLogic.allLinesChecker(newLinesToPlay, creditsLeftAfterSpin, newScreen);
-                    GUI.printScreen(newScreen);
+                    int[,] newScreen = GameLogic.PopulateGrid();
+                    creditsLeftAfterSpin = GameLogic.AllLinesChecker(newLinesToPlay, creditsLeftAfterSpin, newScreen);
+                    GUI.DisplayGrid(newScreen);
                     previousSpinSuccessful = true;
 
                 }
@@ -51,13 +51,13 @@
 
                     if (newLinesToPlay.Count > creditsLeftAfterSpin)
                     {
-                        creditsLeftAfterSpin = +GUI.moneyToPlay();
+                        creditsLeftAfterSpin = +GUI.MoneyToPlay();
                     }
                     else
                     {
-                        int[,] generateNewScreen = GameLogic.populateScreen();
-                        creditsLeftAfterSpin = GameLogic.allLinesChecker(newLinesToPlay, creditsLeftAfterSpin, generateNewScreen);
-                        GUI.printScreen(generateNewScreen);
+                        int[,] generateNewScreen = GameLogic.PopulateGrid();
+                        creditsLeftAfterSpin = GameLogic.AllLinesChecker(newLinesToPlay, creditsLeftAfterSpin, generateNewScreen);
+                        GUI.DisplayGrid(generateNewScreen);
                         previousSpinSuccessful = true;
 
                     }
