@@ -12,11 +12,28 @@
             Console.WriteLine("Welcome to SlotsMachine Ultimate Experience! ");
         }
 
+        //Gets user input and checks if the amount of money is composed of numbers only. If so, is being accepted as a valid input
         public static int moneyToPlay()
         {
-            Console.WriteLine("Please enter the ammount of money you want to gamble: ");
-            int moneyToPlay = Convert.ToInt32(Console.ReadLine());
-            return moneyToPlay;
+            String moneyToPlayString = "";
+            int moneyToPlay;
+            do
+            {
+                Console.WriteLine("Please enter the ammount of money you want to gamble: ");
+                moneyToPlayString = Console.ReadLine();
+
+                if (int.TryParse(moneyToPlayString, out moneyToPlay))
+                {
+                    return moneyToPlay;                    
+                }
+                else
+                {
+                    Console.WriteLine("Please enter any ammount of money represented in numbers only");                  
+                }
+            }
+            while (moneyToPlayString != null);
+            
+            return 0;
         }
 
         //Prints the bet options for user to the console
