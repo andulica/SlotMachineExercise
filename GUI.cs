@@ -81,9 +81,8 @@
                 {
                     chosenLine = Convert.ToInt32(Console.ReadLine());
                 }
-                catch (Exception e)
-                {
-                    //instead of pressing n just make a function that presses exit or enter
+                catch (FormatException e)
+                {                     
                     Console.WriteLine("Do you really want to exit the choosing lines process ? If so, press 'y'");
                     String userChecker = Convert.ToString(Console.ReadLine());
                     if (userChecker.Equals("y"))
