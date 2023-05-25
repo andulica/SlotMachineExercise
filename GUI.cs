@@ -76,7 +76,7 @@
             while (finish)
             {
                 Console.WriteLine("Please select which lines you want to play. " +
-                    "\nEach line is equal with $1 bet and you can keep adding them until you press 'n' or maximum number of lines is reached: ");
+                    "\nEach line is equal with $1 bet and you can keep adding them until you reach maximum number of lines: ");
                 try
                 {
                     chosenLine = Convert.ToInt32(Console.ReadLine());
@@ -84,7 +84,7 @@
                 catch (Exception e)
                 {
                     //instead of pressing n just make a function that presses exit or enter
-                    Console.WriteLine("Do you really want to exit the choosing lines process ? If so, press 'y' or press 'n' to continue choosing more lines");
+                    Console.WriteLine("Do you really want to exit the choosing lines process ? If so, press 'y'");
                     String userChecker = Convert.ToString(Console.ReadLine());
                     if (userChecker.Equals("y"))
                     {

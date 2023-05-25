@@ -25,11 +25,11 @@
                     GUI.printScreen(screen);
                 }
 
-                Console.WriteLine("If you wish to continue with the same gamble, please press 'y.' \nAlternatively, if you prefer to modify your playing values, press 'n'.\n To exit the game type 'exit'");
+                Console.WriteLine("If you wish to continue with the same gamble, please press 'y.' \nAlternatively, if you prefer to modify your playing values, press 'm'.");
                 String userChecker = Convert.ToString(Console.ReadLine().ToLower());
 
 
-                if (userChecker.Equals("n"))
+                if (userChecker.Equals("m"))
                 {
                     newLinesToPlay = new(GUI.chooseLines());
                     if (creditsLeftAfterSpin < newLinesToPlay.Count)
@@ -61,9 +61,7 @@
                         previousSpinSuccessful = true;
 
                     }
-                }
-                else if (userChecker.Equals("exit"))
-                    continueGame = false;               
+                }         
             }
         }   
     }
