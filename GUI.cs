@@ -7,17 +7,18 @@
         private const int MIN_LINE_TO_PLAY = 0;
         private const int MAX_LINE_TO_PLAY = 8;
         private const int ELEMENT_NUMBER = 3;
+        private readonly static Random rnd = new Random();
+        
 
         public static int[,] populateScreen()
         {
             //Populates a 2D array representing the screen of the slotmachine
-            Random rnd = new Random();
             int[,] screen = new int[GRID_SIZE, GRID_SIZE];
-            for (int i = 0; i < GRID_SIZE; i++)
+            for (int row = 0; row < GRID_SIZE; row++)
             {
-                for (int j = 0; j < GRID_SIZE; j++)
+                for (int col = 0; col < GRID_SIZE; col++)
                 {
-                    screen[i, j] = rnd.Next(1, ELEMENT_NUMBER);
+                    screen[row, col] = rnd.Next(1, ELEMENT_NUMBER);
                 }
             }
             return screen;
@@ -56,11 +57,11 @@
         //prints the screen of the slotmachine to the console
         public static void printScreen(int[,] screen)
         {
-            for (int i = 0; i < 3; i++)
+            for (int row = 0; row < 3; row++)
             {
-                for (int k = 0; k < 3; k++)
+                for (int col = 0; col < 3; col++)
                 {
-                    Console.Write(" " + screen[i, k] + " ");
+                    Console.Write(" " + screen[row, col] + " ");
                 }
                 Console.WriteLine();
             }
