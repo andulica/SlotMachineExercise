@@ -1,11 +1,21 @@
-﻿namespace SlotMachineExercise
+﻿using static SlotMachineExercise.GameLogic;
+
+namespace SlotMachineExercise
 {
     internal class GameLogic
     {
         private const int COUNTER_TO_CHECK_HORIZONTAL = 1;
         private const int COUNTER_TO_CHECK_VERTICAL = 4;
 
-       
+        public enum CountLineCheck
+        {
+            Horizontal = 3,
+            Vertical = 6,
+            DiagonalTopLeft = 7,
+            DiagonalTopRight = 8
+
+        }
+    
 
         public static int allLinesChecker (List<int> listChosenLines, int gambleSum, int[,] screen)
         {
@@ -16,23 +26,23 @@
             {
                 if (gambleSum >= listChosenLines.Count)
                 {
-                    if (listChosenLines[i] <= 3)
+                    if (listChosenLines[i] <= (int)CountLineCheck.Horizontal)
 
                     {
                         sumWon += checkHorizontal(screen, listChosenLines[i] - COUNTER_TO_CHECK_HORIZONTAL);
                     }
 
-                    if (listChosenLines[i] > 3 && listChosenLines[i] <= 6)
+                    if (listChosenLines[i] > (int)CountLineCheck.Horizontal && listChosenLines[i] <= (int)CountLineCheck.Vertical)
                     {
                         sumWon += checkVertical(screen, listChosenLines[i] - COUNTER_TO_CHECK_VERTICAL);
                     }
 
-                    if (listChosenLines[i] == 7)
+                    if (listChosenLines[i] == (int)CountLineCheck.DiagonalTopLeft)
                     {
                         sumWon += checkDiagonalTopLeft(screen);
                     }
 
-                    if (listChosenLines[i] == 8)
+                    if (listChosenLines[i] == (int)CountLineCheck.DiagonalTopRight)
                     {
                         sumWon += checkDiagonalTopRight(screen);
                     }
