@@ -34,7 +34,7 @@
                     newLinesToPlay = new(GUI.ChooseLines());
                     if (creditsLeftAfterSpin < newLinesToPlay.Count)
                     {
-                        creditsLeftAfterSpin = +GUI.MoneyToPlay();
+                        creditsLeftAfterSpin += GUI.MoneyToPlay();
                     }
                     int[,] newScreen = GameLogic.PopulateGrid();
                     creditsLeftAfterSpin = GameLogic.AllLinesChecker(newLinesToPlay, creditsLeftAfterSpin, newScreen);
@@ -51,7 +51,7 @@
 
                     if (newLinesToPlay.Count > creditsLeftAfterSpin)
                     {
-                        creditsLeftAfterSpin = +GUI.MoneyToPlay();
+                        creditsLeftAfterSpin += GUI.MoneyToPlay();
                     }
                     else
                     {
