@@ -6,6 +6,9 @@ namespace SlotMachineExercise
     {
         private const int COUNTER_TO_CHECK_HORIZONTAL = 1;
         private const int COUNTER_TO_CHECK_VERTICAL = 4;
+        private const int GRID_SIZE = 3;
+        private const int ELEMENT_NUMBER = 3;
+        private readonly static Random rnd = new Random();
 
         public enum CountLineCheck
         {
@@ -13,14 +16,11 @@ namespace SlotMachineExercise
             Vertical = 6,
             DiagonalTopLeft = 7,
             DiagonalTopRight = 8
-
         }
-    
 
         public static int allLinesChecker (List<int> listChosenLines, int gambleSum, int[,] screen)
         {
             int sumWon = 0;
-
 
             for (int i = 0; i < listChosenLines.Count; i++)
             {
@@ -63,7 +63,19 @@ namespace SlotMachineExercise
                   
         }
 
-
+        public static int[,] populateScreen()
+        {
+            //Populates a 2D array representing the screen of the slotmachine
+            int[,] screen = new int[GRID_SIZE, GRID_SIZE];
+            for (int row = 0; row < GRID_SIZE; row++)
+            {
+                for (int col = 0; col < GRID_SIZE; col++)
+                {
+                    screen[row, col] = rnd.Next(1, ELEMENT_NUMBER);
+                }
+            }
+            return screen;
+        }
 
         //Checks if player won on horizontal lines
         private static int checkHorizontal(int[,] twoDArray, int lineToCheck)

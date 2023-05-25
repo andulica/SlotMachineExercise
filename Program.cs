@@ -12,7 +12,7 @@
             GUI.printOptions();
             List<int> linesToPlay = new (GUI.chooseLines());
             int credits = GUI.moneyToPlay();
-            int[,] screen = GUI.populateScreen();
+            int[,] screen = GameLogic.populateScreen();
             bool continueGame = true;
 
 
@@ -36,7 +36,7 @@
                     {
                         creditsLeftAfterSpin = +GUI.moneyToPlay();
                     }
-                    int[,] newScreen = GUI.populateScreen();
+                    int[,] newScreen = GameLogic.populateScreen();
                     creditsLeftAfterSpin = GameLogic.allLinesChecker(newLinesToPlay, creditsLeftAfterSpin, newScreen);
                     GUI.printScreen(newScreen);
                     previousSpinSuccessful = true;
@@ -55,7 +55,7 @@
                     }
                     else
                     {
-                        int[,] generateNewScreen = GUI.populateScreen();
+                        int[,] generateNewScreen = GameLogic.populateScreen();
                         creditsLeftAfterSpin = GameLogic.allLinesChecker(newLinesToPlay, creditsLeftAfterSpin, generateNewScreen);
                         GUI.printScreen(generateNewScreen);
                         previousSpinSuccessful = true;

@@ -3,27 +3,9 @@
     //comment line to test the commit
     internal class GUI
     {
-        private const int GRID_SIZE = 3;
         private const int MIN_LINE_TO_PLAY = 0;
         private const int MAX_LINE_TO_PLAY = 8;
-        private const int ELEMENT_NUMBER = 3;
-        private readonly static Random rnd = new Random();
-        
-
-        public static int[,] populateScreen()
-        {
-            //Populates a 2D array representing the screen of the slotmachine
-            int[,] screen = new int[GRID_SIZE, GRID_SIZE];
-            for (int row = 0; row < GRID_SIZE; row++)
-            {
-                for (int col = 0; col < GRID_SIZE; col++)
-                {
-                    screen[row, col] = rnd.Next(1, ELEMENT_NUMBER);
-                }
-            }
-            return screen;
-        }
-
+       
         //Prints to the console welcome message
         public static void welcomeMessage()
         {
