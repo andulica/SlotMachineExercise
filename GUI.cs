@@ -1,4 +1,6 @@
-﻿namespace SlotMachineExercise
+﻿using System.Runtime.CompilerServices;
+
+namespace SlotMachineExercise
 {
     //comment line to test the commit
     internal class GUI
@@ -82,7 +84,7 @@
                     chosenLine = Convert.ToInt32(Console.ReadLine());
                 }
                 catch (FormatException e)
-                {                     
+                {
                     Console.WriteLine("Do you really want to exit the choosing lines process ? If so, press 'y'");
                     String userChecker = Convert.ToString(Console.ReadLine());
                     if (userChecker.Equals("y"))
@@ -93,21 +95,31 @@
                         continue;
                 }
 
-                if (chosenLines.Count > MAX_LINE_TO_PLAY || finish == false)
+                if (chosenLines.Count >= MAX_LINE_TO_PLAY)
                 {
+                    Console.WriteLine("Maximum number of lines to play have been reached.");
                     finish = false;
                 }
-                else if (chosenLine < MIN_LINE_TO_PLAY || chosenLine > MAX_LINE_TO_PLAY || chosenLines.Contains(chosenLine))
+                else if (chosenLines.Contains(chosenLine))
                 {
-                    Console.WriteLine($"The line {chosenLine} is not correct, please enter another value");
+                    Console.WriteLine($"The line number {chosenLine} has been added already");
+                }
+                else if (chosenLine < MIN_LINE_TO_PLAY || chosenLine > MAX_LINE_TO_PLAY)
+                {
+                    Console.WriteLine($"The line {chosenLine} is not correct, please enter another value between 1 and 8.");
                 }
                 else
                 {
-                    chosenLines.Add(chosenLine);                   
+                    chosenLines.Add(chosenLine);
+                }
 
+                Console.Write($"Lines that you added are: ");
+
+                foreach (int line in chosenLines)
+                {
+                    Console.Write($" {line}, ");
                 }
             }
-
             return chosenLines;
         }
     }
