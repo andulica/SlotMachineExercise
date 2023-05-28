@@ -77,7 +77,7 @@ namespace SlotMachineExercise
             bool finish = true;
             while (finish)
             {
-                Console.WriteLine("Please select which lines you want to play. " +
+                Console.WriteLine("\nPlease select which lines you want to play. " +
                     "\nEach line is equal with $1 bet and you can keep adding them until you reach maximum number of lines: ");
                 try
                 {
@@ -90,6 +90,7 @@ namespace SlotMachineExercise
                     if (userChecker.Equals("y"))
                     {
                         finish = false;
+                        break;
                     }
                     else
                         continue;
@@ -121,6 +122,13 @@ namespace SlotMachineExercise
                 }
             }
             return chosenLines;
+        }
+
+        public static String DecideIfContinue()
+        {
+            String userChecker;
+            Console.WriteLine("If you wish to continue with the same gamble, please press 'y.' \nAlternatively, if you prefer to modify your playing values, press 'm'.");
+            return userChecker = Convert.ToString(Console.ReadLine().ToLower());
         }
     }
 }

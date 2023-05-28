@@ -14,8 +14,7 @@
             int credits = GUI.MoneyToPlay();
             int[,] screen = GameLogic.PopulateGrid();
             bool continueGame = true;
-
-
+            
             //keeps playing until user decides to quite the game
             while (continueGame)
             {
@@ -25,11 +24,9 @@
                     GUI.DisplayGrid(screen);
                 }
 
-                Console.WriteLine("If you wish to continue with the same gamble, please press 'y.' \nAlternatively, if you prefer to modify your playing values, press 'm'.");
-                String userChecker = Convert.ToString(Console.ReadLine().ToLower());
+                String userChecker = GUI.DecideIfContinue();
 
-
-                if (userChecker.Equals("m"))
+                if (userChecker.Contains("m"))
                 {
                     newLinesToPlay = new(GUI.ChooseLines());
                     if (creditsLeftAfterSpin < newLinesToPlay.Count)
