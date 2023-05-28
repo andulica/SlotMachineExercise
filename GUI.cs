@@ -7,6 +7,7 @@ namespace SlotMachineExercise
     {
         private const int MIN_LINE_TO_PLAY = 0;
         private const int MAX_LINE_TO_PLAY = 8;
+        private const int GRID_SIZE = 3;
        
         //Prints to the console welcome message
         public static void WelcomeMessage()
@@ -58,9 +59,9 @@ namespace SlotMachineExercise
         //prints the screen of the slotmachine to the console
         public static void DisplayGrid(int[,] screen)
         {
-            for (int row = 0; row < 3; row++)
+            for (int row = 0; row < GRID_SIZE; row++)
             {
-                for (int col = 0; col < 3; col++)
+                for (int col = 0; col < GRID_SIZE; col++)
                 {
                     Console.Write(" " + screen[row, col] + " ");
                 }
