@@ -80,41 +80,25 @@ namespace SlotMachineExercise
         //Checks if player won on horizontal lines
         private static int CheckHorizontal(int[,] twoDArray, int lineToCheck)
         {
-            if (twoDArray[lineToCheck, 0] == twoDArray[lineToCheck, 1] && twoDArray[lineToCheck, 0] == twoDArray[lineToCheck, 2])
-            {
-                return 1;
-            }
-            return 0;
+            return (twoDArray[lineToCheck, 0] == twoDArray[lineToCheck, 1] && twoDArray[lineToCheck, 0] == twoDArray[lineToCheck, 2]) ? 1 : 0;
         }
 
         //Checks if player won on vertical lines
         private static int CheckVertical(int[,] twoDArray, int lineToCheck)
         {
-            if (twoDArray[0, lineToCheck] == twoDArray[1, lineToCheck] && twoDArray[0, lineToCheck] == twoDArray[2, lineToCheck])
-            {                
-                return 1;
-            }
-            return 0;
+            return (twoDArray[0, lineToCheck] == twoDArray[1, lineToCheck] && twoDArray[0, lineToCheck] == twoDArray[2, lineToCheck]) ? 1 : 0;
         }
 
         //Checks if player won on diagonal from top left corner to bottom right corner
         private static int CheckDiagonalTopLeft(int[,] twoDArray)
         {
-            if (twoDArray[0, 0] == twoDArray[1, 1] && twoDArray[0, 0] == twoDArray[2, 2])
-            {                
-                return 1;
-            }
-            return 0;
+            return (twoDArray[0, 0] == twoDArray[1, 1] && twoDArray[0, 0] == twoDArray[2, 2]) ? 1 : 0;
         }
 
         //Checks if player won on diagonal from top right corner to bottom left corner
         private static int CheckDiagonalTopRight(int[,] twoDArray)
         {
-            if (twoDArray[0, 2] == twoDArray[1, 1] && twoDArray[0, 2] == twoDArray[2, 0])
-            {
-                return 1;
-            }
-            return 0;
+            return (twoDArray[0, 2] == twoDArray[1, 1] && twoDArray[0, 2] == twoDArray[2, 0]) ? 1 : 0;
         }     
     }
 }

@@ -4,8 +4,7 @@
     {
         static void Main(string[] args)
         {
-            int creditsLeftAfterSpin = 0;
-                  
+            int creditsLeftAfterSpin = 0;                  
             bool previousSpinSuccessful = false;
 
             GUI.WelcomeMessage();
@@ -42,12 +41,7 @@
                 }
                 //user presses 'y' which means that he chose to play the same values from the previous successful spin
                 else if (userChecker.Equals("y"))
-                {
-                    if (linesToPlay.Count == 0)
-                    {
-                        linesToPlay = linesToPlay;
-                    }
-
+                {                  
                     if (linesToPlay.Count > creditsLeftAfterSpin)
                     {
                         creditsLeftAfterSpin += GUI.MoneyToPlay();
