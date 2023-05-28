@@ -130,6 +130,21 @@ namespace SlotMachineExercise
             Console.WriteLine("If you wish to continue with the same gamble, please press 'y.' \nAlternatively, if you prefer to modify your playing values, press 'm'.");
             return userChecker = Convert.ToString(Console.ReadLine().ToLower());
         }
+
+        public static void DisplayWinnings (int winnings)
+        {
+            Console.WriteLine($"You have won in total: {winnings} USD! ");
+        }
+
+        public static void DisplayMsgInsufficientCredits()
+        {
+            Console.WriteLine("Insuficient funds!");
+        }
+
+        public static void DisplayCreditsLeft (int creditsLeft)
+        {
+            Console.WriteLine($"Total funds left = {creditsLeft} USD! ");
+        }
     }
 }
 

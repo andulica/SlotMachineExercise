@@ -49,15 +49,15 @@ namespace SlotMachineExercise
                 }
                 else
                 {
-                    Console.WriteLine("Insuficient funds!");
+                    GUI.DisplayMsgInsufficientCredits();
                 }
             }
 
-            Console.WriteLine($"You have won in total:{sumWon} USD! ");
+            GUI.DisplayWinnings(sumWon);
 
             int sumLeftAfterSpin = (gambleSum - listChosenLines.Count) + sumWon;
 
-            Console.WriteLine($"Total funds left = {sumLeftAfterSpin} USD! ");
+            GUI.DisplayCreditsLeft(sumLeftAfterSpin);
 
             return sumLeftAfterSpin;
                   
