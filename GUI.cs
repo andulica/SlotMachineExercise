@@ -80,11 +80,9 @@ namespace SlotMachineExercise
             {
                 Console.WriteLine("\nPlease select which lines you want to play. " +
                     "\nEach line is equal with $1 bet and you can keep adding them until you reach maximum number of lines: ");
-                try
-                {
-                    chosenLine = Convert.ToInt32(Console.ReadLine());
-                }
-                catch (FormatException e)
+                bool validNumber = Int32.TryParse(Console.ReadLine(), out chosenLine);
+
+                if (validNumber == false)
                 {
                     Console.WriteLine("Do you really want to exit the choosing lines process ? If so, press 'y'");
                     String userChecker = Convert.ToString(Console.ReadLine());
@@ -96,6 +94,7 @@ namespace SlotMachineExercise
                     else
                         continue;
                 }
+                
 
                 if (chosenLines.Count >= MAX_LINE_TO_PLAY)
                 {
