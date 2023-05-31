@@ -39,12 +39,12 @@ namespace SlotMachineExercise
 
                     if (listChosenLines[i] == (int)CountLineCheck.DiagonalTopLeft)
                     {
-                        sumWon += CheckDiagonalTopLeft(screen);
+                        sumWon += checkDiagonalLines(screen, listChosenLines[i]);
                     }
 
                     if (listChosenLines[i] == (int)CountLineCheck.DiagonalTopRight)
                     {
-                        sumWon += CheckDiagonalTopRight(screen);
+                        sumWon += checkDiagonalLines(screen, listChosenLines[i]);
                     }
                 }
                 else
@@ -90,15 +90,29 @@ namespace SlotMachineExercise
         }
 
         //Checks if player won on diagonal from top left corner to bottom right corner
-        private static int CheckDiagonalTopLeft(int[,] twoDArray)
+        private static int checkDiagonalLines(int[,] twoDArray, int lineToCheck)
         {
-            return (twoDArray[0, 0] == twoDArray[1, 1] && twoDArray[0, 0] == twoDArray[2, 2]) ? 1 : 0;
+            if (lineToCheck == (int)CountLineCheck.DiagonalTopLeft)
+            {
+                return (twoDArray[0, 0] == twoDArray[1, 1] && twoDArray[0, 0] == twoDArray[2, 2]) ? 1 : 0;
+            }
+            else if (lineToCheck == (int)CountLineCheck.DiagonalTopRight)
+            {
+                return (twoDArray[0, 2] == twoDArray[1, 1] && twoDArray[0, 2] == twoDArray[2, 0]) ? 1 : 0;
+            }
+            return 0;                       
         }
 
-        //Checks if player won on diagonal from top right corner to bottom left corner
-        private static int CheckDiagonalTopRight(int[,] twoDArray)
+        public static int Spin(int[,] screen, List<int> listChosenLines, int gambleCredits)
         {
-            return (twoDArray[0, 2] == twoDArray[1, 1] && twoDArray[0, 2] == twoDArray[2, 0]) ? 1 : 0;
-        }     
+            if (listChosenLines.Count > gambleCredits)
+            {
+                gambleCredits += GUI.MoneyToPlay();
+            }
+            screen = PopulateGrid();
+            GUI.DisplayGrid(screen);
+            return AllLinesChecker(listChosenLines, gambleCredits, screen);
+        }
     }
 }
+ 

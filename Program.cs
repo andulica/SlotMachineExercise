@@ -3,8 +3,7 @@
     internal class Program
     {
         static void Main(string[] args)
-        {
-            int creditsLeftAfterSpin = 0;                  
+        {                          
             bool previousSpinSuccessful = false;
 
             GUI.WelcomeMessage();
@@ -19,7 +18,7 @@
             {
                 if (previousSpinSuccessful == false)
                 {
-                    creditsLeftAfterSpin = GameLogic.AllLinesChecker(linesToPlay, credits, screen);
+                    credits = GameLogic.Spin(screen, linesToPlay, credits);
                     GUI.DisplayGrid(screen);
                 }
 
@@ -28,32 +27,16 @@
                 //user presses 'm' which means that he chose to change the play values
                 if (userChecker.Equals("m"))
                 {
-                    linesToPlay = new(GUI.ChooseLines());
-                    if (creditsLeftAfterSpin < linesToPlay.Count)
-                    {
-                        creditsLeftAfterSpin += GUI.MoneyToPlay();
-                    }
-                    int[,] newScreen = GameLogic.PopulateGrid();
-                    creditsLeftAfterSpin = GameLogic.AllLinesChecker(linesToPlay, creditsLeftAfterSpin, newScreen);
-                    GUI.DisplayGrid(newScreen);
-                    previousSpinSuccessful = true;
+                    linesToPlay = new(GUI.ChooseLines());                 
+                    credits = GameLogic.Spin(screen, linesToPlay, credits);
+                    previousSpinSuccessful = true;                    
 
                 }
                 //user presses 'y' which means that he chose to play the same values from the previous successful spin
                 else if (userChecker.Equals("y"))
-                {                  
-                    if (linesToPlay.Count > creditsLeftAfterSpin)
-                    {
-                        creditsLeftAfterSpin += GUI.MoneyToPlay();
-                    }
-                    else
-                    {
-                        int[,] generateNewScreen = GameLogic.PopulateGrid();
-                        creditsLeftAfterSpin = GameLogic.AllLinesChecker(linesToPlay, creditsLeftAfterSpin, generateNewScreen);
-                        GUI.DisplayGrid(generateNewScreen);
-                        previousSpinSuccessful = true;
-
-                    }
+                {                                                                      
+                    credits = GameLogic.Spin(screen, linesToPlay, credits);
+                    previousSpinSuccessful = true;                  
                 }         
             }
         }   
