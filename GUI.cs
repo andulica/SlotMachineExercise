@@ -125,10 +125,9 @@ namespace SlotMachineExercise
         }
 
         public static String DecideIfContinue()
-        {
-            String userChecker;
+        {           
             Console.WriteLine("If you wish to continue with the same gamble, please press 'y.' \nAlternatively, if you prefer to modify your playing values, press 'm'.");
-            return userChecker = Convert.ToString(Console.ReadLine().ToLower());
+            return Convert.ToString(Console.ReadLine().ToLower());
         }
 
         public static void DisplayWinnings (int winnings)

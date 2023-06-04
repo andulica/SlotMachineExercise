@@ -63,6 +63,17 @@ namespace SlotMachineExercise
                   
         }
 
+        public static int Spin (List<int> linesToPlay, int credits, int[,] grid)          
+        {
+            if (linesToPlay.Count > credits)
+            {
+                credits += GUI.MoneyToPlay();
+            }
+            grid = GameLogic.PopulateGrid();            
+            GUI.DisplayGrid(grid);
+            return GameLogic.AllLinesChecker(linesToPlay, credits, grid);
+        }
+
         public static int[,] PopulateGrid()
         {
             //Populates a 2D array representing the screen of the slotmachine
