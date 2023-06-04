@@ -11,8 +11,10 @@
             int[,] screen = GameLogic.PopulateGrid();
             bool continueGame = true;
 
-            //keeps playing until user decides to quite the game
+            //first call of the Spin method is required so that changing the lines to play in the while loop becomes valid
             credits = GameLogic.Spin(linesToPlay, credits, screen);
+
+            //keeps playing until user decides to quite the game
             while (continueGame) { 
 
                 String userChecker = GUI.DecideIfContinue();
