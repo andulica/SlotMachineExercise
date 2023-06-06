@@ -1,4 +1,6 @@
-﻿namespace SlotMachineExercise
+﻿using System.Reflection.Metadata.Ecma335;
+
+namespace SlotMachineExercise
 {
     internal class GameLogic
     {
@@ -8,12 +10,12 @@
         private const int ELEMENT_NUMBER = 3;
         private readonly static Random rnd = new Random();
 
-        public enum CountLineCheck
+        public enum SlotMachineLine
         {
-            Horizontal = 3,
-            Vertical = 6,
-            DiagonalTopLeft = 7,
-            DiagonalTopRight = 8
+            ALL_HOR = 3,
+            ALL_VER = 6,
+            DIAG_TL = 7,
+            DIAG_TR = 8
         }
 
         public static int AllLinesChecker (List<int> linesToPlay, int credits, int[,] grid)
@@ -24,25 +26,20 @@
             {
                 if (credits >= linesToPlay.Count)
                 {
-                    if (linesToPlay[i] <= (int)CountLineCheck.Horizontal)
+                    if (linesToPlay[i] <= (int)SlotMachineLine.ALL_HOR)
 
                     {
                         winnings += CheckHorizontal(grid, linesToPlay[i] - COUNTER_TO_CHECK_HORIZONTAL);
                     }
 
-                    if (linesToPlay[i] > (int)CountLineCheck.Horizontal && linesToPlay[i] <= (int)CountLineCheck.Vertical)
+                    if (linesToPlay[i] > (int)SlotMachineLine.ALL_HOR && linesToPlay[i] <= (int)SlotMachineLine.ALL_VER)
                     {
                         winnings += CheckVertical(grid, linesToPlay[i] - COUNTER_TO_CHECK_VERTICAL);
                     }
 
-                    if (linesToPlay[i] == (int)CountLineCheck.DiagonalTopLeft)
+                    if (linesToPlay.Contains((int)SlotMachineLine.DIAG_TL) || linesToPlay.Contains((int)SlotMachineLine.DIAG_TR))
                     {
-                        winnings += CheckDiagonalTopLeft(grid);
-                    }
-
-                    if (linesToPlay[i] == (int)CountLineCheck.DiagonalTopRight)
-                    {
-                        winnings += CheckDiagonalTopRight(grid);
+                        winnings += CheckDiagonalLines(grid, linesToPlay);
                     }
                 }
                 else
@@ -87,27 +84,30 @@
         }
 
         //Checks if player won on horizontal lines
-        private static int CheckHorizontal(int[,] twoDArray, int lineToCheck)
+        private static int CheckHorizontal(int[,] grid, int lineToCheck)
         {
-            return (twoDArray[lineToCheck, 0] == twoDArray[lineToCheck, 1] && twoDArray[lineToCheck, 0] == twoDArray[lineToCheck, 2]) ? 1 : 0;
+            return (grid[lineToCheck, 0] == grid[lineToCheck, 1] && grid[lineToCheck, 0] == grid[lineToCheck, 2]) ? 1 : 0;
         }
 
         //Checks if player won on vertical lines
-        private static int CheckVertical(int[,] twoDArray, int lineToCheck)
+        private static int CheckVertical(int[,] grid, int lineToCheck)
         {
-            return (twoDArray[0, lineToCheck] == twoDArray[1, lineToCheck] && twoDArray[0, lineToCheck] == twoDArray[2, lineToCheck]) ? 1 : 0;
+            return (grid[0, lineToCheck] == grid[1, lineToCheck] && grid[0, lineToCheck] == grid[2, lineToCheck]) ? 1 : 0;
         }
 
-        //Checks if player won on diagonal from top left corner to bottom right corner
-        private static int CheckDiagonalTopLeft(int[,] twoDArray)
+        //Checks if player won on both diagonal lines
+       private static int CheckDiagonalLines(int[,] grid, List<int> linesToPlay)
         {
-            return (twoDArray[0, 0] == twoDArray[1, 1] && twoDArray[0, 0] == twoDArray[2, 2]) ? 1 : 0;
+            if (linesToPlay.Contains((int)SlotMachineLine.DIAG_TL))
+            {
+                return (grid[0, 0] == grid[1, 1] && grid[0, 0] == grid[2, 2]) ? 1 : 0;
+            }
+            else if (linesToPlay.Contains((int)SlotMachineLine.DIAG_TR))
+            {
+                return (grid[0, 2] == grid[1, 1] && grid[0, 2] == grid[2, 0]) ? 1 : 0;
+            }
+            else
+                return 0;
         }
-
-        //Checks if player won on diagonal from top right corner to bottom left corner
-        private static int CheckDiagonalTopRight(int[,] twoDArray)
-        {
-            return (twoDArray[0, 2] == twoDArray[1, 1] && twoDArray[0, 2] == twoDArray[2, 0]) ? 1 : 0;
-        }     
     }
 }

@@ -139,7 +139,7 @@ namespace SlotMachineExercise
             Console.WriteLine("Insuficient funds!");
         }
 
-        public static void DisplayCreditsLeft (int creditsLeft)
+        public static void DisplayCreditsLeft(int creditsLeft)
         {
             Console.WriteLine($"Total funds left = {creditsLeft} USD! ");
         }
