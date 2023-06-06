@@ -1,6 +1,4 @@
-﻿using static SlotMachineExercise.GameLogic;
-
-namespace SlotMachineExercise
+﻿namespace SlotMachineExercise
 {
     internal class GameLogic
     {
@@ -18,33 +16,33 @@ namespace SlotMachineExercise
             DiagonalTopRight = 8
         }
 
-        public static int AllLinesChecker (List<int> listChosenLines, int gambleSum, int[,] screen)
+        public static int AllLinesChecker (List<int> linesToPlay, int credits, int[,] grid)
         {
-            int sumWon = 0;
+            int winnings = 0;
 
-            for (int i = 0; i < listChosenLines.Count; i++)
+            for (int i = 0; i < linesToPlay.Count; i++)
             {
-                if (gambleSum >= listChosenLines.Count)
+                if (credits >= linesToPlay.Count)
                 {
-                    if (listChosenLines[i] <= (int)CountLineCheck.Horizontal)
+                    if (linesToPlay[i] <= (int)CountLineCheck.Horizontal)
 
                     {
-                        sumWon += CheckHorizontal(screen, listChosenLines[i] - COUNTER_TO_CHECK_HORIZONTAL);
+                        winnings += CheckHorizontal(grid, linesToPlay[i] - COUNTER_TO_CHECK_HORIZONTAL);
                     }
 
-                    if (listChosenLines[i] > (int)CountLineCheck.Horizontal && listChosenLines[i] <= (int)CountLineCheck.Vertical)
+                    if (linesToPlay[i] > (int)CountLineCheck.Horizontal && linesToPlay[i] <= (int)CountLineCheck.Vertical)
                     {
-                        sumWon += CheckVertical(screen, listChosenLines[i] - COUNTER_TO_CHECK_VERTICAL);
+                        winnings += CheckVertical(grid, linesToPlay[i] - COUNTER_TO_CHECK_VERTICAL);
                     }
 
-                    if (listChosenLines[i] == (int)CountLineCheck.DiagonalTopLeft)
+                    if (linesToPlay[i] == (int)CountLineCheck.DiagonalTopLeft)
                     {
-                        sumWon += CheckDiagonalTopLeft(screen);
+                        winnings += CheckDiagonalTopLeft(grid);
                     }
 
-                    if (listChosenLines[i] == (int)CountLineCheck.DiagonalTopRight)
+                    if (linesToPlay[i] == (int)CountLineCheck.DiagonalTopRight)
                     {
-                        sumWon += CheckDiagonalTopRight(screen);
+                        winnings += CheckDiagonalTopRight(grid);
                     }
                 }
                 else
@@ -53,13 +51,13 @@ namespace SlotMachineExercise
                 }
             }
 
-            GUI.DisplayWinnings(sumWon);
+            GUI.DisplayWinnings(winnings);
 
-            int sumLeftAfterSpin = (gambleSum - listChosenLines.Count) + sumWon;
+            credits = (credits - linesToPlay.Count) + winnings;
 
-            GUI.DisplayCreditsLeft(sumLeftAfterSpin);
+            GUI.DisplayCreditsLeft(credits);
 
-            return sumLeftAfterSpin;
+            return credits;
                   
         }
 

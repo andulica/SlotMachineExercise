@@ -18,23 +18,23 @@ namespace SlotMachineExercise
         //Gets user input and checks if the amount of money is composed of numbers only. If so, is being accepted as a valid input
         public static int MoneyToPlay()
         {
-            String moneyToPlayString = "";
-            int moneyToPlay;
+            String stringCredits = "";
+            int credits;
             do
             {
                 Console.WriteLine("Please enter the ammount of money you want to gamble: ");
-                moneyToPlayString = Console.ReadLine();
+                stringCredits = Console.ReadLine();
 
-                if (int.TryParse(moneyToPlayString, out moneyToPlay))
+                if (int.TryParse(stringCredits, out credits))
                 {
-                    return moneyToPlay;                    
+                    return credits;                    
                 }
                 else
                 {
                     Console.WriteLine("Please enter any ammount of money represented in numbers only");                  
                 }
             }
-            while (moneyToPlayString != null);
+            while (stringCredits != null);
             
             return 0;
         }
@@ -72,8 +72,8 @@ namespace SlotMachineExercise
         //takes user Lines and adds them to a list. If the list is
         public static List<int> ChooseLines()
         {
-            List<int> chosenLines = new List<int>();
-            int chosenLine = 0;
+            List<int> linesToPlay = new List<int>();
+            int chosenLine;
 
             bool finish = true;
             while (finish)
@@ -87,8 +87,7 @@ namespace SlotMachineExercise
                     Console.WriteLine("Do you really want to exit the choosing lines process ? If so, press 'y'");
                     String userChecker = Convert.ToString(Console.ReadLine());
                     if (userChecker.Equals("y"))
-                    {
-                        finish = false;
+                    {                        
                         break;
                     }
                     else
@@ -96,12 +95,12 @@ namespace SlotMachineExercise
                 }
                 
 
-                if (chosenLines.Count >= MAX_LINE_TO_PLAY)
+                if (linesToPlay.Count >= MAX_LINE_TO_PLAY)
                 {
                     Console.WriteLine("Maximum number of lines to play have been reached.");
                     finish = false;
                 }
-                else if (chosenLines.Contains(chosenLine))
+                else if (linesToPlay.Contains(chosenLine))
                 {
                     Console.WriteLine($"The line number {chosenLine} has been added already");
                 }
@@ -111,17 +110,17 @@ namespace SlotMachineExercise
                 }
                 else
                 {
-                    chosenLines.Add(chosenLine);
+                    linesToPlay.Add(chosenLine);
                 }
 
                 Console.Write($"Lines that you added are: ");
 
-                foreach (int line in chosenLines)
+                foreach (int line in linesToPlay)
                 {
                     Console.Write($" {line}, ");
                 }
             }
-            return chosenLines;
+            return linesToPlay;
         }
 
         public static String DecideIfContinue()
