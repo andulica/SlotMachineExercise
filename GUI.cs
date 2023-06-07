@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace SlotMachineExercise
+﻿namespace SlotMachineExercise
 {
     //comment line to test the commit
     internal class GUI
@@ -8,7 +6,7 @@ namespace SlotMachineExercise
         private const int MIN_LINE_TO_PLAY = 0;
         private const int MAX_LINE_TO_PLAY = 8;
         private const int GRID_SIZE = 3;
-       
+
         //Prints to the console welcome message
         public static void WelcomeMessage()
         {
@@ -27,15 +25,15 @@ namespace SlotMachineExercise
 
                 if (int.TryParse(stringCredits, out credits))
                 {
-                    return credits;                    
+                    return credits;
                 }
                 else
                 {
-                    Console.WriteLine("Please enter any ammount of money represented in numbers only");                  
+                    Console.WriteLine("Please enter any ammount of money represented in numbers only");
                 }
             }
             while (stringCredits != null);
-            
+
             return 0;
         }
 
@@ -87,13 +85,13 @@ namespace SlotMachineExercise
                     Console.WriteLine("Do you really want to exit the choosing lines process ? If so, press 'y'");
                     String userChecker = Convert.ToString(Console.ReadLine());
                     if (userChecker.Equals("y"))
-                    {                        
+                    {
                         break;
                     }
                     else
                         continue;
                 }
-                
+
 
                 if (linesToPlay.Count >= MAX_LINE_TO_PLAY)
                 {
@@ -124,12 +122,12 @@ namespace SlotMachineExercise
         }
 
         public static String DecideIfContinue()
-        {           
+        {
             Console.WriteLine("If you wish to continue with the same gamble, please press 'y.' \nAlternatively, if you prefer to modify your playing values, press 'm'.");
             return Convert.ToString(Console.ReadLine().ToLower());
         }
 
-        public static void DisplayWinnings (int winnings)
+        public static void DisplayWinnings(int winnings)
         {
             Console.WriteLine($"You have won in total: {winnings} USD! ");
         }

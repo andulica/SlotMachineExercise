@@ -1,6 +1,4 @@
-﻿using System.Reflection.Metadata.Ecma335;
-
-namespace SlotMachineExercise
+﻿namespace SlotMachineExercise
 {
     internal class GameLogic
     {
