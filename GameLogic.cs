@@ -37,9 +37,14 @@ namespace SlotMachineExercise
                         winnings += CheckVertical(grid, linesToPlay[i] - COUNTER_TO_CHECK_VERTICAL);
                     }
 
-                    if (linesToPlay.Contains((int)SlotMachineLine.DIAG_TL) || linesToPlay.Contains((int)SlotMachineLine.DIAG_TR))
+                   if (linesToPlay[i] == (int)SlotMachineLine.DIAG_TL)
                     {
-                        winnings += CheckDiagonalLines(grid, linesToPlay);
+                        winnings += CheckDiagonalTopLeft(grid);
+                    }
+
+                   if (linesToPlay[i] == (int)SlotMachineLine.DIAG_TR)
+                    {
+                        winnings += CheckDiagonalTopRight(grid);
                     }
                 }
                 else
@@ -95,19 +100,16 @@ namespace SlotMachineExercise
             return (grid[0, lineToCheck] == grid[1, lineToCheck] && grid[0, lineToCheck] == grid[2, lineToCheck]) ? 1 : 0;
         }
 
-        //Checks if player won on both diagonal lines
-       private static int CheckDiagonalLines(int[,] grid, List<int> linesToPlay)
+        //Checks if player won on diagonal line starting from top left corner
+       private static int CheckDiagonalTopLeft(int[,] grid)
         {
-            if (linesToPlay.Contains((int)SlotMachineLine.DIAG_TL))
-            {
-                return (grid[0, 0] == grid[1, 1] && grid[0, 0] == grid[2, 2]) ? 1 : 0;
-            }
-            else if (linesToPlay.Contains((int)SlotMachineLine.DIAG_TR))
-            {
-                return (grid[0, 2] == grid[1, 1] && grid[0, 2] == grid[2, 0]) ? 1 : 0;
-            }
-            else
-                return 0;
+            return (grid[0, 0] == grid[1, 1] && grid[0, 0] == grid[2, 2]) ? 1 : 0;
+        }
+
+        //Checks if player won on diagonal line starting from top right corner
+        private static int CheckDiagonalTopRight(int[,] grid)
+        {
+            return (grid[0, 2] == grid[1, 1] && grid[0, 2] == grid[2, 0]) ? 1 : 0;
         }
     }
 }
