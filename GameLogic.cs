@@ -16,7 +16,7 @@
             DIAG_TR = 8
         }
 
-        public static int AllLinesChecker (List<int> linesToPlay, int credits, int[,] grid)
+        public static int CheckAllLines (List<int> linesToPlay, int credits, int[,] grid)
         {
             int winnings = 0;
 
@@ -69,7 +69,7 @@
             }
             grid = GameLogic.PopulateGrid();            
             GUI.DisplayGrid(grid);
-            return GameLogic.AllLinesChecker(linesToPlay, credits, grid);
+            return GameLogic.CheckAllLines(linesToPlay, credits, grid);
         }
 
         public static int[,] PopulateGrid()
