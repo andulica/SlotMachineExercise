@@ -53,18 +53,6 @@
 
         }
 
-        public static int Spin(List<int> linesToPlay, int credits, int[,] grid)
-        {
-            if (credits < linesToPlay.Count)
-            {
-                credits += GUI.MoneyToPlay(linesToPlay);
-            }
-            
-            grid = GameLogic.PopulateGrid();
-            GUI.DisplayGrid(grid);
-            return GameLogic.CheckAllLines(linesToPlay, credits, grid);           
-        }
-
         public static int[,] PopulateGrid()
         {
             //Populates a 2D array representing the screen of the slotmachine
