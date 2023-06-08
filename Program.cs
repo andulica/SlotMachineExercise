@@ -11,42 +11,23 @@
             int[,] grid = GameLogic.PopulateGrid();
             bool continueGame = true;
 
-            //first call of the Spin method is required so that changing the lines to play in the while loop becomes valid
-            if (credits < linesToPlay.Count)
-            {
-                credits += GUI.MoneyToPlay(linesToPlay);
-            }
-            grid = GameLogic.PopulateGrid();
-            GUI.DisplayGrid(grid);
-            credits = GameLogic.CheckAllLines(linesToPlay, credits, grid);
-
+           
             //keeps playing until user decides to quite the game
             while (continueGame) { 
 
-                String userChecker = GUI.DecideIfContinue();
-
-                switch (userChecker)
+                if (credits < linesToPlay.Count)
                 {
-                    case "m":
-                        linesToPlay = new(GUI.ChooseLines());
-                        if (credits < linesToPlay.Count)
-                        {
-                            credits += GUI.MoneyToPlay(linesToPlay);
-                        }
-                        grid = GameLogic.PopulateGrid();
-                        GUI.DisplayGrid(grid);
-                        credits = GameLogic.CheckAllLines(linesToPlay, credits, grid);
-                        break;
-                    case "y":
-                        if (credits < linesToPlay.Count)
-                        {
-                            credits += GUI.MoneyToPlay(linesToPlay);
-                        }
-                        grid = GameLogic.PopulateGrid();
-                        GUI.DisplayGrid(grid);
-                        credits = GameLogic.CheckAllLines(linesToPlay, credits, grid);
-                        break;
+                    credits += GUI.MoneyToPlay(linesToPlay);
                 }
+                grid = GameLogic.PopulateGrid();
+                GUI.DisplayGrid(grid);
+                credits = GameLogic.CheckAllLines(linesToPlay, credits, grid);
+
+                String userChecker = GUI.DecideIfContinue();
+                if (userChecker.Equals("m"))
+                {
+                    linesToPlay = new(GUI.ChooseLines());
+                }                
             }                     
         }
     }

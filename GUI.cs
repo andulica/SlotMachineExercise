@@ -122,7 +122,7 @@
 
         public static String DecideIfContinue()
         {
-            Console.WriteLine("If you wish to continue with the same gamble, please press 'y.' \nAlternatively, if you prefer to modify your playing values, press 'm'.");
+            Console.WriteLine("If you wish to change the lines, please press 'm', otherwise press any button");
             return Convert.ToString(Console.ReadLine().ToLower());
         }
 
