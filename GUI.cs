@@ -14,26 +14,27 @@
         }
 
         //Gets user input and checks if the amount of money is composed of numbers only. If so, is being accepted as a valid input
-        public static int MoneyToPlay()
-        {
-            String stringCredits = "";
-            int credits;
-            do
+        public static int MoneyToPlay(List<int> linesToPlay)
+        {            
+            bool invalidCredits = false;
+            while (!invalidCredits)
             {
                 Console.WriteLine("Please enter the ammount of money you want to gamble: ");
-                stringCredits = Console.ReadLine();
+                String stringCredits = Console.ReadLine();
+                int credits;
 
-                if (int.TryParse(stringCredits, out credits))
+                if (!int.TryParse(stringCredits, out credits))
                 {
-                    return credits;
+                    Console.WriteLine("Please enter any ammount of money represented in numbers only");                                       
                 }
-                else
+             
+                if (credits < linesToPlay.Count)
                 {
-                    Console.WriteLine("Please enter any ammount of money represented in numbers only");
+                    Console.WriteLine("Insuficient funds!");
                 }
-            }
-            while (stringCredits != null);
-
+                else 
+                    return credits;                       
+            }          
             return 0;
         }
 
@@ -52,7 +53,6 @@
                 " \n           |   |   |    " +
                 " \n           4   5   6    ");
         }
-
 
         //prints the screen of the slotmachine to the console
         public static void DisplayGrid(int[,] screen)
@@ -92,7 +92,6 @@
                         continue;
                 }
 
-
                 if (linesToPlay.Count >= MAX_LINE_TO_PLAY)
                 {
                     Console.WriteLine("Maximum number of lines to play have been reached.");
@@ -130,11 +129,6 @@
         public static void DisplayWinnings(int winnings)
         {
             Console.WriteLine($"You have won in total: {winnings} USD! ");
-        }
-
-        public static void DisplayMsgInsufficientCredits()
-        {
-            Console.WriteLine("Insuficient funds!");
         }
 
         public static void DisplayCreditsLeft(int creditsLeft)

@@ -16,38 +16,30 @@
             DIAG_TR = 8
         }
 
-        public static int CheckAllLines (List<int> linesToPlay, int credits, int[,] grid)
+        public static int CheckAllLines(List<int> linesToPlay, int credits, int[,] grid)
         {
             int winnings = 0;
 
             for (int i = 0; i < linesToPlay.Count; i++)
-            {
-                if (credits >= linesToPlay.Count)
+            {                
+                if (linesToPlay[i] <= (int)SlotMachineLine.ALL_HOR)
                 {
-                    if (linesToPlay[i] <= (int)SlotMachineLine.ALL_HOR)
-
-                    {
-                        winnings += CheckHorizontal(grid, linesToPlay[i] - COUNTER_TO_CHECK_HORIZONTAL);
-                    }
-
-                    if (linesToPlay[i] > (int)SlotMachineLine.ALL_HOR && linesToPlay[i] <= (int)SlotMachineLine.ALL_VER)
-                    {
-                        winnings += CheckVertical(grid, linesToPlay[i] - COUNTER_TO_CHECK_VERTICAL);
-                    }
-
-                   if (linesToPlay[i] == (int)SlotMachineLine.DIAG_TL)
-                    {
-                        winnings += CheckDiagonalTopLeft(grid);
-                    }
-
-                   if (linesToPlay[i] == (int)SlotMachineLine.DIAG_TR)
-                    {
-                        winnings += CheckDiagonalTopRight(grid);
-                    }
+                    winnings += CheckHorizontal(grid, linesToPlay[i] - COUNTER_TO_CHECK_HORIZONTAL);
                 }
-                else
+
+                if (linesToPlay[i] > (int)SlotMachineLine.ALL_HOR && linesToPlay[i] <= (int)SlotMachineLine.ALL_VER)
                 {
-                    GUI.DisplayMsgInsufficientCredits();
+                    winnings += CheckVertical(grid, linesToPlay[i] - COUNTER_TO_CHECK_VERTICAL);
+                }
+
+                if (linesToPlay[i] == (int)SlotMachineLine.DIAG_TL)
+                {
+                    winnings += CheckDiagonalTopLeft(grid);
+                }
+
+                if (linesToPlay[i] == (int)SlotMachineLine.DIAG_TR)
+                {
+                    winnings += CheckDiagonalTopRight(grid);
                 }
             }
 
@@ -58,18 +50,19 @@
             GUI.DisplayCreditsLeft(credits);
 
             return credits;
-                  
+
         }
 
-        public static int Spin (List<int> linesToPlay, int credits, int[,] grid)          
+        public static int Spin(List<int> linesToPlay, int credits, int[,] grid)
         {
-            if (linesToPlay.Count > credits)
+            if (credits < linesToPlay.Count)
             {
-                credits += GUI.MoneyToPlay();
+                credits += GUI.MoneyToPlay(linesToPlay);
             }
-            grid = GameLogic.PopulateGrid();            
+            
+            grid = GameLogic.PopulateGrid();
             GUI.DisplayGrid(grid);
-            return GameLogic.CheckAllLines(linesToPlay, credits, grid);
+            return GameLogic.CheckAllLines(linesToPlay, credits, grid);           
         }
 
         public static int[,] PopulateGrid()
@@ -99,7 +92,7 @@
         }
 
         //Checks if player won on diagonal line starting from top left corner
-       private static int CheckDiagonalTopLeft(int[,] grid)
+        private static int CheckDiagonalTopLeft(int[,] grid)
         {
             return (grid[0, 0] == grid[1, 1] && grid[0, 0] == grid[2, 2]) ? 1 : 0;
         }
