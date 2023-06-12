@@ -10,8 +10,7 @@
             int credits = GUI.MoneyToPlay(linesToPlay);
             int[,] grid = GameLogic.PopulateGrid();
             bool continueGame = true;
-
-           
+        
             //keeps playing until user decides to quite the game
             while (continueGame) { 
 

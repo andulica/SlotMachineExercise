@@ -16,8 +16,7 @@
         //Gets user input and checks if the amount of money is composed of numbers only. If so, is being accepted as a valid input
         public static int MoneyToPlay(List<int> linesToPlay)
         {            
-            bool invalidCredits = false;
-            while (!invalidCredits)
+            while (true)
             {
                 Console.WriteLine("Please enter the ammount of money you want to gamble: ");
                 String stringCredits = Console.ReadLine();
@@ -27,15 +26,16 @@
                 {
                     Console.WriteLine("Please enter any ammount of money represented in numbers only");                                       
                 }
-             
+
                 if (credits < linesToPlay.Count)
                 {
                     Console.WriteLine("Insuficient funds!");
                 }
-                else 
-                    return credits;                       
+                else
+                {
+                    return credits;
+                }
             }          
-            return 0;
         }
 
         //Prints the bet options for user to the console
