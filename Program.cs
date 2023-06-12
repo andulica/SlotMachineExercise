@@ -6,13 +6,12 @@
         {
             GUI.WelcomeMessage();
             GUI.PrintOptions();
-            List<int> linesToPlay = (GUI.ChooseLines());
-            int credits = GUI.MoneyToPlay(linesToPlay);
-            int[,] grid = GameLogic.PopulateGrid();
-            bool continueGame = true;
-        
+                             
             //keeps playing until user decides to quite the game
-            while (continueGame) { 
+            while (true) {
+                List<int> linesToPlay = (GUI.ChooseLines());
+                int credits = GUI.MoneyToPlay(linesToPlay);
+                int[,] grid = GameLogic.PopulateGrid();
 
                 if (credits < linesToPlay.Count)
                 {
