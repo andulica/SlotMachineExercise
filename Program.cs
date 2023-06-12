@@ -6,7 +6,7 @@
         {
             GUI.WelcomeMessage();
             GUI.PrintOptions();
-            List<int> linesToPlay = new(GUI.ChooseLines());
+            List<int> linesToPlay = (GUI.ChooseLines());
             int credits = GUI.MoneyToPlay(linesToPlay);
             int[,] grid = GameLogic.PopulateGrid();
             bool continueGame = true;
@@ -25,7 +25,7 @@
                 String userChecker = GUI.DecideIfContinue();
                 if (userChecker.Equals("m"))
                 {
-                    linesToPlay = new(GUI.ChooseLines());
+                    linesToPlay = (GUI.ChooseLines());
                 }                
             }                     
         }

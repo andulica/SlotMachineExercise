@@ -10,7 +10,7 @@
         //Prints to the console welcome message
         public static void WelcomeMessage()
         {
-            Console.WriteLine("Welcome to SlotsMachine Ultimate Experience! ");
+            Console.WriteLine("Welcome to SlotsMachine Ultimate Experience!");
         }
 
         //Gets user input and checks if the amount of money is composed of numbers only. If so, is being accepted as a valid input
