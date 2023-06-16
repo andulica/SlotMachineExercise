@@ -25,16 +25,11 @@
                 if (!int.TryParse(stringCredits, out credits))
                 {
                     Console.WriteLine("Please enter any ammount of money represented in numbers only");                                       
-                }
-
-                if (credits < linesToPlay.Count)
-                {
-                    Console.WriteLine("Insuficient funds!");
-                }
+                } 
                 else
                 {
                     return credits;
-                }
+                }                                                   
             }          
         }
 
