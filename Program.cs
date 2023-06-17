@@ -22,7 +22,7 @@
                 }
 
                 // Check if the player has enough credits for this round.
-                if (credits < linesToPlay.Count)
+                while (credits < linesToPlay.Count)
                 {
                     Console.WriteLine("Insufficient funds! Please add more.");
                     credits += GUI.MoneyToPlay(linesToPlay);
