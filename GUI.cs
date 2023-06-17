@@ -1,5 +1,5 @@
 ﻿namespace SlotMachineExercise
-{    
+{
     internal class GUI
     {
         private const int MIN_LINE_TO_PLAY = 0;
@@ -14,7 +14,7 @@
 
         // Gets user input and checks if the amount of money is composed of numbers only. If so, is being accepted as a valid input
         public static int MoneyToPlay(List<int> linesToPlay)
-        {            
+        {
             while (true)
             {
                 Console.WriteLine("Please enter the ammount of money you want to gamble: ");
@@ -23,13 +23,13 @@
 
                 if (!int.TryParse(stringCredits, out credits))
                 {
-                    Console.WriteLine("Please enter any ammount of money represented in numbers only");                                       
-                } 
+                    Console.WriteLine("Please enter any ammount of money represented in numbers only");
+                }
                 else
                 {
                     return credits;
-                }                                                   
-            }          
+                }
+            }
         }
 
         // Prints the line choosing options for user to the console
@@ -131,6 +131,12 @@
         public static void DisplayCredits(int creditsLeft)
         {
             Console.WriteLine($"Total funds left = {creditsLeft} USD! ");
+        }
+
+        // Displays a message for insufficient funds
+        public static void InsufficientFunds()
+        {
+            Console.WriteLine("Insufficient funds! Please add more.");
         }
     }
 }
