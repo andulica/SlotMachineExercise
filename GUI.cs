@@ -6,13 +6,13 @@
         private const int MAX_LINE_TO_PLAY = 8;
         private const int GRID_SIZE = 3;
 
-        //Prints to the console welcome message
+        // Prints to the console welcome message
         public static void WelcomeMessage()
         {
             Console.WriteLine("Welcome to SlotsMachine Ultimate Experience!");
         }
 
-        //Gets user input and checks if the amount of money is composed of numbers only. If so, is being accepted as a valid input
+        // Gets user input and checks if the amount of money is composed of numbers only. If so, is being accepted as a valid input
         public static int MoneyToPlay(List<int> linesToPlay)
         {            
             while (true)
@@ -32,7 +32,7 @@
             }          
         }
 
-        //Prints the bet options for user to the console
+        // Prints the line choosing options for user to the console
         public static void PrintOptions()
         {
             Console.WriteLine(
@@ -48,7 +48,7 @@
                 " \n           4   5   6    ");
         }
 
-        //prints the screen of the slotmachine to the console
+        // Prints the grid of the slotmachine to the console
         public static void DisplayGrid(int[,] screen)
         {
             for (int row = 0; row < GRID_SIZE; row++)
@@ -61,7 +61,7 @@
             }
         }
 
-        //takes user Lines and adds them to a list. If the list is
+        // Takes user Lines and adds them to a list. If the list is
         public static List<int> ChooseLines()
         {
             List<int> linesToPlay = new List<int>();
@@ -76,7 +76,7 @@
 
                 if (validNumber == false)
                 {
-                    Console.WriteLine("Do you really want to exit the choosing lines process ? If so, press 'y'");
+                    Console.WriteLine("Do you really want to exit the choosing lines process ? If so, press 'y' or press any other key to continue: ");
                     String userChecker = Convert.ToString(Console.ReadLine());
                     if (userChecker.Equals("y"))
                     {
@@ -114,18 +114,21 @@
             return linesToPlay;
         }
 
+        // Asks user if decides to continue to play with the same values or he wants to change them
         public static String DecideIfContinue()
         {
             Console.WriteLine("If you wish to change the lines, please press 'm', otherwise press any button");
             return Convert.ToString(Console.ReadLine().ToLower());
         }
 
+        // Displays winnings to the console
         public static void DisplayWinnings(int winnings)
         {
             Console.WriteLine($"You have won in total: {winnings} USD! ");
         }
 
-        public static void DisplayCreditsLeft(int creditsLeft)
+        // Displays credits to the console
+        public static void DisplayCredits(int creditsLeft)
         {
             Console.WriteLine($"Total funds left = {creditsLeft} USD! ");
         }

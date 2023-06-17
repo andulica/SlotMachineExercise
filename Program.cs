@@ -34,7 +34,7 @@
                 winnings = GameLogic.CheckAllLines(linesToPlay, grid);
                 GUI.DisplayWinnings(winnings);
                 credits = credits + winnings - linesToPlay.Count;
-                GUI.DisplayCreditsLeft(credits);
+                GUI.DisplayCredits(credits);
             }
         }
     }
