@@ -4,8 +4,7 @@
     {
         static void Main(string[] args)
         {
-            GUI.WelcomeMessage();
-            GUI.PrintOptions();
+            GUI.WelcomeMessage();           
             List<int> linesToPlay = new List<int>();
             int credits = 0;
             int[,] grid;
@@ -13,9 +12,9 @@
 
             // Keeps playing until user decides to quit the game.
             while (true)
-            {        
+            {                
                 // If no lines has been chosen or player pressed "m" he is promted to enter new values.
-                if (!linesToPlay.Any() || GUI.DecideIfContinue().Equals("m"))
+                if (!linesToPlay.Any() || GUI.DecideIfContinue().Equals("m") )
                 {
                     linesToPlay = GUI.ChooseLines();
                     credits += GUI.MoneyToPlay(linesToPlay);
