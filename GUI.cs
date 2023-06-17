@@ -1,6 +1,5 @@
 ﻿namespace SlotMachineExercise
-{
-    //comment line to test the commit
+{    
     internal class GUI
     {
         private const int MIN_LINE_TO_PLAY = 0;

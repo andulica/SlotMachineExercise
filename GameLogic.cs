@@ -16,7 +16,8 @@
             DIAG_TR = 8
         }
 
-        public static int CheckAllLines(List<int> linesToPlay, int credits, int[,] grid)
+        // Checks if there are any matching lines. If matches are found, total credits won are returned
+        public static int CheckAllLines(List<int> linesToPlay, int[,] grid)
         {
             int winnings = 0;
 
@@ -42,15 +43,7 @@
                     winnings += CheckDiagonalTopRight(grid);
                 }
             }
-
-            GUI.DisplayWinnings(winnings);
-
-            credits = (credits - linesToPlay.Count) + winnings;
-
-            GUI.DisplayCreditsLeft(credits);
-
-            return credits;
-
+            return winnings;            
         }
 
         public static int[,] PopulateGrid()
