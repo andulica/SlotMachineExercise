@@ -151,5 +151,19 @@
         {
             Console.WriteLine("Insufficient funds! Please add more.");
         }
+
+        public static bool DecideIfExitGame()
+        {
+            Console.WriteLine("Do you want to quite the game? \nPress 'y' to exit or any other key to continue: ");
+            char userInput = Convert.ToChar(Console.ReadLine());
+            if (userInput.Equals('y'))
+            {
+                Console.WriteLine("Tank you for playing our game!");
+                return true;
+            }
+            Console.WriteLine("You have chosen to continue!");
+            return false;
+        }
+
     }
 }
