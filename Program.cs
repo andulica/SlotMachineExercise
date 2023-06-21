@@ -1,7 +1,7 @@
 ﻿namespace SlotMachineExercise
 {
     internal class Program
-    { 
+    {
         static void Main(string[] args)
         {
             GUI.WelcomeMessage();
@@ -29,7 +29,7 @@
                     if (quit)
                     {
                         break;
-                    }                    
+                    }
                     GUI.InsufficientFunds();
                     credits += GUI.MoneyToPlay(linesToPlay);
                 }
@@ -37,15 +37,15 @@
                 if (quit)
                 {
                     break;
-                }              
-                    // If all conditions to play have been met, then the game plays a spin
-                    grid = GameLogic.PopulateGrid();
-                    GUI.DisplayGrid(grid);
-                    winnings = GameLogic.CheckAllLines(linesToPlay, grid);
-                    GUI.DisplayWinnings(winnings);
-                    credits = credits + winnings - linesToPlay.Count;
-                    GUI.DisplayCredits(credits);               
-            }       
+                }
+                // If all conditions to play have been met, then the game plays a spin
+                grid = GameLogic.PopulateGrid();
+                GUI.DisplayGrid(grid);
+                winnings = GameLogic.CheckAllLines(linesToPlay, grid);
+                GUI.DisplayWinnings(winnings);
+                credits = credits + winnings - linesToPlay.Count;
+                GUI.DisplayCredits(credits);
+            }
         }
     }
 }

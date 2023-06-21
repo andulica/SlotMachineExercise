@@ -62,9 +62,9 @@
             {
                 Console.WriteLine("-----------------");
                 for (int col = 0; col < Constants.GRID_SIZE; col++)
-                {                   
-                    Console.Write("| " + screen[row, col] + " | ");                   
-                }               
+                {
+                    Console.Write("| " + screen[row, col] + " | ");
+                }
                 Console.WriteLine();
             }
         }
@@ -160,6 +160,5 @@
             Console.WriteLine("You have chosen to continue!");
             return false;
         }
-
     }
 }

@@ -21,7 +21,7 @@
             int winnings = 0;
 
             for (int i = 0; i < linesToPlay.Count; i++)
-            {                
+            {
                 if (linesToPlay[i] <= (int)SlotMachineLine.ALL_HOR)
                 {
                     winnings += CheckHorizontal(grid, linesToPlay[i] - COUNTER_TO_CHECK_HORIZONTAL);
@@ -42,7 +42,7 @@
                     winnings += CheckDiagonalTopRight(grid);
                 }
             }
-            return winnings;            
+            return winnings;
         }
 
         public static int[,] PopulateGrid()
