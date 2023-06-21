@@ -1,7 +1,7 @@
 ﻿namespace SlotMachineExercise
 {
     internal class Program
-    {
+    { 
         static void Main(string[] args)
         {
             GUI.WelcomeMessage();
@@ -22,7 +22,7 @@
                 }
 
                 // Check if the player has enough credits for this round.
-                // Also once the user get to the stage when he needs more credits to continue playing, he is asked if he wants to quit the game or not
+                // Also once the user get to the stage when he needs more credits to continue playing, he is asked if he wants to quit the game or not              
                 while (credits < linesToPlay.Count)
                 {
                     quit = GUI.DecideIfExitGame();

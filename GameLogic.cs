@@ -4,7 +4,6 @@
     {
         private const int COUNTER_TO_CHECK_HORIZONTAL = 1;
         private const int COUNTER_TO_CHECK_VERTICAL = 4;
-        private const int GRID_SIZE = 3;
         private const int ELEMENT_NUMBER = 3;
         private readonly static Random rnd = new Random();
 
@@ -49,10 +48,10 @@
         public static int[,] PopulateGrid()
         {
             //Populates a 2D array representing the screen of the slotmachine
-            int[,] screen = new int[GRID_SIZE, GRID_SIZE];
-            for (int row = 0; row < GRID_SIZE; row++)
+            int[,] screen = new int[Constants.GRID_SIZE, Constants.GRID_SIZE];
+            for (int row = 0; row < Constants.GRID_SIZE; row++)
             {
-                for (int col = 0; col < GRID_SIZE; col++)
+                for (int col = 0; col < Constants.GRID_SIZE; col++)
                 {
                     screen[row, col] = rnd.Next(1, ELEMENT_NUMBER);
                 }

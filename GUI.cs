@@ -2,10 +2,6 @@
 {
     internal class GUI
     {
-        private const int MIN_LINE_TO_PLAY = 0;
-        private const int MAX_LINE_TO_PLAY = 8;
-        private const int GRID_SIZE = 3;
-
         // Prints to the console welcome message
         public static void WelcomeMessage()
         {
@@ -62,10 +58,10 @@
         // Prints the grid of the slotmachine to the console
         public static void DisplayGrid(int[,] screen)
         {
-            for (int row = 0; row < GRID_SIZE; row++)
+            for (int row = 0; row < Constants.GRID_SIZE; row++)
             {
                 Console.WriteLine("-----------------");
-                for (int col = 0; col < GRID_SIZE; col++)
+                for (int col = 0; col < Constants.GRID_SIZE; col++)
                 {                   
                     Console.Write("| " + screen[row, col] + " | ");                   
                 }               
@@ -99,7 +95,7 @@
                         continue;
                 }
 
-                if (linesToPlay.Count >= MAX_LINE_TO_PLAY)
+                if (linesToPlay.Count >= Constants.MAX_LINE_TO_PLAY)
                 {
                     Console.WriteLine("Maximum number of lines to play have been reached.");
                     finish = false;
@@ -108,7 +104,7 @@
                 {
                     Console.WriteLine($"The line number {chosenLine} has been added already");
                 }
-                else if (chosenLine < MIN_LINE_TO_PLAY || chosenLine > MAX_LINE_TO_PLAY)
+                else if (chosenLine < Constants.MIN_LINE_TO_PLAY || chosenLine > Constants.MAX_LINE_TO_PLAY)
                 {
                     Console.WriteLine($"The line {chosenLine} is not correct, please enter another value between 1 and 8.");
                 }
