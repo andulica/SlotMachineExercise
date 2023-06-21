@@ -86,8 +86,8 @@
                 if (validNumber == false)
                 {
                     Console.WriteLine("Do you really want to exit the choosing lines process? \nIf so, press 'y' or press any other key to continue adding lines: ");
-                    String userChecker = Convert.ToString(Console.ReadLine());
-                    if (userChecker.Equals("y"))
+                    char userChecker = Convert.ToChar(Console.ReadLine());
+                    if (userChecker.Equals(Constants.YES_ANSWER))
                     {
                         break;
                     }
@@ -124,10 +124,10 @@
         }
 
         // Asks user if decides to continue to play with the same values or he wants to change them
-        public static String DecideIfContinue()
+        public static char DecideIfContinue()
         {
             Console.WriteLine("If you wish to change the lines, please press 'm', \notherwise continue playing with the same values by pressing any key: ");
-            return Convert.ToString(Console.ReadLine().ToLower());
+            return Convert.ToChar(Console.ReadLine().ToLower());
         }
 
         // Displays winnings to the console
@@ -152,7 +152,7 @@
         {
             Console.WriteLine("Do you want to quite the game? \nPress 'y' to exit or any other key to continue: ");
             char userInput = Convert.ToChar(Console.ReadLine());
-            if (userInput.Equals('y'))
+            if (userInput.Equals(Constants.YES_ANSWER))
             {
                 Console.WriteLine("Tank you for playing our game!");
                 return true;

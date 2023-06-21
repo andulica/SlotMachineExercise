@@ -15,7 +15,7 @@
             while (true)
             {
                 // If no lines has been chosen or player pressed "m" he is promted to enter new values.
-                if (!linesToPlay.Any() || GUI.DecideIfContinue().Equals("m"))
+                if (!linesToPlay.Any() || GUI.DecideIfContinue().Equals(Constants.MODIFY_ANSWER))
                 {
                     linesToPlay = GUI.ChooseLines();
                     credits += GUI.MoneyToPlay(linesToPlay);
