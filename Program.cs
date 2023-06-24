@@ -10,12 +10,12 @@
             int[,] grid;
             int winnings;
             bool quit = false;
-
+            
             // Keeps playing until user decides to quit the game.
             while (true)
             {
                 // If no lines has been chosen or player pressed "m" he is promted to enter new values.
-                if (!linesToPlay.Any() || GUI.DecideIfContinue().Equals(Constants.MODIFY_ANSWER))
+                if (!linesToPlay.Any() || GUI.DecideIfContinue())
                 {
                     linesToPlay = GUI.ChooseLines();
                     credits += GUI.MoneyToPlay(linesToPlay);
@@ -33,7 +33,7 @@
                     GUI.InsufficientFunds();
                     credits += GUI.MoneyToPlay(linesToPlay);
                 }
-
+                
                 if (quit)
                 {
                     break;

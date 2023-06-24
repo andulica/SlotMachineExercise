@@ -2,13 +2,19 @@
 {
     internal class GUI
     {
-        // Prints to the console welcome message
+        /// <summary>
+        /// Prints to the console welcome message
+        /// </summary>
         public static void WelcomeMessage()
         {
             Console.WriteLine("Welcome to SlotsMachine Ultimate Experience!");
         }
 
-        // Gets user input and checks if the amount of money is composed of numbers only. If so, is being accepted as a valid input
+        /// <summary>
+        ///  Gets user input and checks if the amount of money is composed of numbers only. If so, is being accepted as a valid input
+        /// </summary>
+        /// <param name="linesToPlay"></param>
+        /// <returns>the added credits</returns>
         public static int MoneyToPlay(List<int> linesToPlay)
         {
             while (true)
@@ -28,7 +34,9 @@
             }
         }
 
-        // Prints the line choosing options for user to the console
+        /// <summary>
+        /// Prints the line choosing options for user to the console
+        /// </summary>
         public static void PrintOptions()
         {
             Console.WriteLine(
@@ -54,8 +62,10 @@
             "\n   7: Diagonal line from top left" +
             "\n   8: Diagonal line from top right");
         }
-
-        // Prints the grid of the slotmachine to the console
+        /// <summary>
+        /// Prints the grid of the slotmachine to the console
+        /// </summary>
+        /// <param name="screen"></param>
         public static void DisplayGrid(int[,] screen)
         {
             for (int row = 0; row < Constants.GRID_SIZE; row++)
@@ -69,7 +79,10 @@
             }
         }
 
-        // Takes user Lines and adds them to a list. If the list is
+        /// <summary>
+        /// Takes user Lines and adds them to a list
+        /// </summary>
+        /// <returns>A list with the lines chosen by the user</returns>
         public static List<int> ChooseLines()
         {
             List<int> linesToPlay = new List<int>();
@@ -123,38 +136,55 @@
             return linesToPlay;
         }
 
-        // Asks user if decides to continue to play with the same values or he wants to change them
-        public static char DecideIfContinue()
+        /// <summary>
+        /// Asks user if decides to continue to play with the same values or he wants to change them
+        /// </summary>
+        /// <returns>A boolean value. True if player decides to contiue, false if he decides not to continue</returns>
+        public static bool DecideIfContinue()
         {
             Console.WriteLine("If you wish to change the lines, please press 'm', \notherwise continue playing with the same values by pressing any key: ");
-            return Convert.ToChar(Console.ReadLine().ToLower());
+            char userInput =Convert.ToChar(Console.ReadLine());
+            if (userInput.Equals(Constants.MODIFY_ANSWER))
+            {
+                return true;
+            }
+            return false;
         }
-
-        // Displays winnings to the console
+        /// <summary>
+        /// Displays winnings to the console
+        /// </summary>
+        /// <param name="winnings"></param>
         public static void DisplayWinnings(int winnings)
         {
             Console.WriteLine($"You have won in total: {winnings} USD! ");
         }
 
-        // Displays credits to the console
+        /// <summary>
+        /// Displays credits to the console
+        /// </summary>
+        /// <param name="creditsLeft"></param>
         public static void DisplayCredits(int creditsLeft)
         {
             Console.WriteLine($"Total funds left = {creditsLeft} USD! ");
         }
-
-        // Displays a message for insufficient funds
+        /// <summary>
+        /// Displays a message for insufficient funds
+        /// </summary>
         public static void InsufficientFunds()
         {
             Console.WriteLine("Insufficient funds! Please add more.");
         }
-
+        /// <summary>
+        /// Player is asked to decide if he wants to exit or continue the game
+        /// </summary>
+        /// <returns>A boolean value. True if player decides to exit the game, false if he decides not to exit the game.</returns>
         public static bool DecideIfExitGame()
         {
-            Console.WriteLine("Do you want to quite the game? \nPress 'y' to exit or any other key to continue: ");
+            Console.WriteLine("\nYou don't enough credits to play. Do you want to quit the game? \nPress 'y' to exit or any other key to continue: ");
             char userInput = Convert.ToChar(Console.ReadLine());
             if (userInput.Equals(Constants.YES_ANSWER))
             {
-                Console.WriteLine("Tank you for playing our game!");
+                Console.WriteLine("Thank you for playing our game!");
                 return true;
             }
             Console.WriteLine("You have chosen to continue!");
