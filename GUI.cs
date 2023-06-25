@@ -143,7 +143,7 @@
         public static bool DecideIfContinue()
         {
             Console.WriteLine("If you wish to change the lines, please press 'm', \notherwise continue playing with the same values by pressing any key: ");
-            char userInput =Convert.ToChar(Console.ReadLine());
+            char userInput = Convert.ToChar(Console.ReadLine());
             if (userInput.Equals(Constants.MODIFY_ANSWER))
             {
                 return true;
@@ -180,12 +180,13 @@
         /// <returns>A boolean value. True if player decides to exit the game, false if he decides not to exit the game.</returns>
         public static bool DecideIfExitGame()
         {
+            char exitAnswer;
             Console.WriteLine("\nYou don't enough credits to play. Do you want to quit the game? \nPress 'y' to exit or any other key to continue: ");
-            char userInput = Convert.ToChar(Console.ReadLine());
-            if (userInput.Equals(Constants.YES_ANSWER))
+            bool userInputExit = Char.TryParse(Console.ReadLine(), out exitAnswer);
+            if (exitAnswer.Equals(Constants.YES_ANSWER))
             {
                 Console.WriteLine("Thank you for playing our game!");
-                return true;
+                return userInputExit;
             }
             Console.WriteLine("You have chosen to continue!");
             return false;
