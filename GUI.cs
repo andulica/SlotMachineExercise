@@ -98,14 +98,16 @@
 
                 if (validNumber == false)
                 {
+                    char exitChosingLines;
                     Console.WriteLine("Do you really want to exit the choosing lines process? \nIf so, press 'y' or press any other key to continue adding lines: ");
-                    char userChecker = Convert.ToChar(Console.ReadLine());
-                    if (userChecker.Equals(Constants.YES_ANSWER))
+                    Char.TryParse(Console.ReadLine(), out exitChosingLines);
+                    if (exitChosingLines.Equals(Constants.YES_ANSWER))
                     {
                         break;
                     }
                     else
                         continue;
+
                 }
 
                 if (linesToPlay.Count >= Constants.MAX_LINE_TO_PLAY)
@@ -142,13 +144,15 @@
         /// <returns>A boolean value. True if player decides to contiue, false if he decides not to continue</returns>
         public static bool DecideIfContinue()
         {
+            char changeValue;
             Console.WriteLine("If you wish to change the lines, please press 'm', \notherwise continue playing with the same values by pressing any key: ");
-            char userInput = Convert.ToChar(Console.ReadLine());
-            if (userInput.Equals(Constants.MODIFY_ANSWER))
+            bool changeValueTrue = Char.TryParse(Console.ReadLine(), out changeValue);
+            if (changeValue.Equals(Constants.MODIFY_ANSWER))
             {
-                return true;
+                return changeValueTrue;
             }
             return false;
+
         }
         /// <summary>
         /// Displays winnings to the console
