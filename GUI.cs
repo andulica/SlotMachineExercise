@@ -127,13 +127,12 @@
                 {
                     linesToPlay.Add(chosenLine);
                 }
+            }
+            Console.Write($"Lines that you added are: ");
 
-                Console.Write($"Lines that you added are: ");
-
-                foreach (int line in linesToPlay)
-                {
-                    Console.Write($" {line}, ");
-                }
+            foreach (int line in linesToPlay)
+            {
+                Console.Write($" {line}, ");
             }
             return linesToPlay;
         }
