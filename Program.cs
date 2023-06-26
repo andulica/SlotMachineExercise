@@ -5,6 +5,7 @@
         static void Main(string[] args)
         {
             GUI.WelcomeMessage();
+            Console.WriteLine(GUI.ChooseLine());
             List<int> linesToPlay = new List<int>();
             int credits = 0;
             int[,] grid;

@@ -80,6 +80,22 @@
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static int ChooseLine()
+        {
+            int chosenLine;
+            bool validNumber = Int32.TryParse(Console.ReadLine(), out chosenLine);
+            if (validNumber)
+            {
+                return chosenLine;
+            }
+            return 0;
+        }
+
+
+        /// <summary>
         /// Takes user Lines and adds them to a list
         /// </summary>
         /// <returns>A list with the lines chosen by the user</returns>
