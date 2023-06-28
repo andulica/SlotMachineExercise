@@ -15,7 +15,7 @@
         /// </summary>
         /// <param name="linesToPlay"></param>
         /// <returns>the added credits.</returns>
-        public static int MoneyToPlay(List<int> linesToPlay)
+        public static int MoneyToPlay()
         {
             while (true)
             {

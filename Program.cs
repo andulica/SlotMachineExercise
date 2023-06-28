@@ -19,7 +19,7 @@
                 {
                     linesToPlay = GameLogic.AddLineToList();
                     GUI.OutPutChoseLines(linesToPlay);
-                    credits += GUI.MoneyToPlay(linesToPlay);
+                    credits += GUI.MoneyToPlay();
                 }
 
                 // Check if the player has enough credits for this round.
@@ -32,7 +32,7 @@
                         break;
                     }
                     GUI.InsufficientFunds();
-                    credits += GUI.MoneyToPlay(linesToPlay);
+                    credits += GUI.MoneyToPlay();
                 }
                 
                 if (quit)
