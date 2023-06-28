@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace SlotMachineExercise
+﻿namespace SlotMachineExercise
 {
     internal class GUI
     {
@@ -85,7 +83,7 @@ namespace SlotMachineExercise
         /// <summary>
         /// Prompts the user to select the lines that he wants to play.
         /// </summary>
-        public static void SelectLinesPrompt ()
+        public static void SelectLinesPrompt()
         {
             Console.WriteLine("\nPlease select which lines you want to play. " +
                     "\nEach line is equal with $1 bet and you can keep adding them until you reach maximum number of lines: ");
@@ -184,10 +182,24 @@ namespace SlotMachineExercise
         }
 
         /// <summary>
-        /// Player is asked to decide if he wants to exit or continue the game.
+        /// Displays to the console the lines that player chose.
         /// </summary>
-        /// <returns>A boolean value. True if player decides to exit the game, false if he decides not to exit the game.</returns>
-        public static bool DecideIfExitGame()
+        /// <param name="chosenLines"></param>
+        public static void OutPutChoseLines(List <int> chosenLines)
+        {
+            Console.Write($"Lines that you added are: ");
+
+            foreach (int line in chosenLines)
+            {
+                Console.Write($" {line}, ");
+            }
+        }
+    
+    /// <summary>
+    /// Player is asked to decide if he wants to exit or continue the game.
+    /// </summary>
+    /// <returns>A boolean value. True if player decides to exit the game, false if he decides not to exit the game.</returns>
+    public static bool DecideIfExitGame()
         {
             char exitAnswer;
             Console.WriteLine("\nYou don't enough credits to play. Do you want to quit the game? \nPress 'y' to exit or any other key to continue: ");

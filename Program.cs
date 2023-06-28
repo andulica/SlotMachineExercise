@@ -18,6 +18,7 @@
                 if (!linesToPlay.Any() || GUI.DecideIfContinue())
                 {
                     linesToPlay = GameLogic.AddLineToList();
+                    GUI.OutPutChoseLines(linesToPlay);
                     credits += GUI.MoneyToPlay(linesToPlay);
                 }
 
