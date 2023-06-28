@@ -6,21 +6,21 @@
         private const int COUNTER_TO_CHECK_VERTICAL = 4;
         private const int ELEMENT_NUMBER = 3;
         private readonly static Random rnd = new Random();
-
+        public static List<int> linesToPlay = new List<int>();
         public enum SlotMachineLine
         {
             ALL_HOR = 3,
             ALL_VER = 6,
             DIAG_TL = 7,
             DIAG_TR = 8
-        }
+        }     
 
         /// <summary>
-        /// Checks if there are any matching lines. If matches are found, total credits won are returned
+        /// Checks if there are any matching lines. If matches are found, total credits won are returned.
         /// </summary>
         /// <param name="linesToPlay"></param>
         /// <param name="grid"></param>
-        /// <returns>A Integer representing the total winnings</returns>
+        /// <returns>A Integer representing the total winnings.</returns>
         public static int CheckAllLines(List<int> linesToPlay, int[,] grid)
         {
             int winnings = 0;
@@ -49,13 +49,13 @@
             }
             return winnings;
         }
+
         /// <summary>
-        /// Populates a grid 3x3 randomly with values of 1 and 2
+        /// Populates a grid 3x3 randomly with values of 1 and 2.
         /// </summary>
-        /// <returns>A 2D array</returns>
+        /// <returns>A 2D array.</returns>
         public static int[,] PopulateGrid()
         {
-            //Populates a 2D array representing the screen of the slotmachine
             int[,] screen = new int[Constants.GRID_SIZE, Constants.GRID_SIZE];
             for (int row = 0; row < Constants.GRID_SIZE; row++)
             {
@@ -68,40 +68,99 @@
         }
 
         /// <summary>
-        /// Checks if player won on horizontal lines
+        /// Checks either the line that player chose is correct or incorrect and displays the instructions of what to do if is not. If the lines is correct then is added to the list of lines to play.
+        /// </summary>
+        /// <param name="chosenLine"></param>
+        /// <param name="linesToPlay"></param>
+        /// <returns>Returns a list with lines to play.</returns>
+        public static List<int> AddLineToList ()
+        {
+            List<int> linesToPlay = new List<int>();
+            int chosenLine;
+            bool finish = true;
+            while (finish)
+            {
+                GUI.SelectLinesPrompt();
+                bool validNumber = Int32.TryParse(Console.ReadLine(), out chosenLine);
+
+                if (validNumber == false)
+                {
+                    char exitChosingLines;
+                    GUI.ConfirmExitPrompt();
+                    Char.TryParse(Console.ReadLine(), out exitChosingLines);
+                    if (exitChosingLines.Equals(Constants.YES_ANSWER))
+                    {
+                        break;
+                    }
+                    else
+                        continue;
+                }
+
+                if (linesToPlay.Count >= Constants.MAX_LINE_TO_PLAY)
+                {
+                    GUI.MaxLinesReached();
+                    finish = false;
+                }
+                else if (linesToPlay.Contains(chosenLine))
+                {
+                    GUI.LineExisting(chosenLine);
+                }
+                else if (chosenLine < Constants.MIN_LINE_TO_PLAY || chosenLine > Constants.MAX_LINE_TO_PLAY)
+                {
+                    GUI.IncorrectLine(chosenLine);
+                }
+                else
+                {
+                    linesToPlay.Add(chosenLine);
+                }
+            }
+            Console.Write($"Lines that you added are: ");
+
+            foreach (int line in linesToPlay)
+            {
+                Console.Write($" {line}, ");
+            }
+
+            return linesToPlay;
+        }
+
+        /// <summary>
+        /// Checks if player won on horizontal lines.
         /// </summary>
         /// <param name="grid"></param>
         /// <param name="lineToCheck"></param>
-        /// <returns>A Integer representing the winnings on horizontal lines</returns>
+        /// <returns>A Integer representing the winnings on horizontal lines.</returns>
         private static int CheckHorizontal(int[,] grid, int lineToCheck)
         {
             return (grid[lineToCheck, 0] == grid[lineToCheck, 1] && grid[lineToCheck, 0] == grid[lineToCheck, 2]) ? 1 : 0;
         }
+
         /// <summary>
-        /// Checks if player won on vertical lines
+        /// Checks if player won on vertical lines.
         /// </summary>
         /// <param name="grid"></param>
         /// <param name="lineToCheck"></param>
-        /// <returns>A Integer representing the winnings on vertical lines</returns>
+        /// <returns>A Integer representing the winnings on vertical lines.</returns>
         private static int CheckVertical(int[,] grid, int lineToCheck)
         {
             return (grid[0, lineToCheck] == grid[1, lineToCheck] && grid[0, lineToCheck] == grid[2, lineToCheck]) ? 1 : 0;
         }
+
         /// <summary>
-        /// Checks if player won on diagonal line starting from top left corner
+        /// Checks if player won on diagonal line starting from top left corner.
         /// </summary>
         /// <param name="grid"></param>
-        /// <returns>A Integer representing the win on vertical line starting from top left corner</returns>
+        /// <returns>A Integer representing the win on vertical line starting from top left corner.</returns>
         private static int CheckDiagonalTopLeft(int[,] grid)
         {
             return (grid[0, 0] == grid[1, 1] && grid[0, 0] == grid[2, 2]) ? 1 : 0;
         }
 
         /// <summary>
-        /// Checks if player won on diagonal line starting from top right corner
+        /// Checks if player won on diagonal line starting from top right corner.
         /// </summary>
         /// <param name="grid"></param>
-        /// <returns>A Integer representing the win on vertical line starting from top right corner</returns>
+        /// <returns>A Integer representing the win on vertical line starting from top right corner.</returns>
         private static int CheckDiagonalTopRight(int[,] grid)
         {
             return (grid[0, 2] == grid[1, 1] && grid[0, 2] == grid[2, 0]) ? 1 : 0;

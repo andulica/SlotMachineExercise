@@ -1,9 +1,11 @@
-﻿namespace SlotMachineExercise
+﻿using System.Diagnostics;
+
+namespace SlotMachineExercise
 {
     internal class GUI
     {
         /// <summary>
-        /// Prints to the console welcome message
+        /// Prints to the console welcome message.
         /// </summary>
         public static void WelcomeMessage()
         {
@@ -11,10 +13,10 @@
         }
 
         /// <summary>
-        ///  Gets user input and checks if the amount of money is composed of numbers only. If so, is being accepted as a valid input
+        ///  Gets user input and checks if the amount of money is composed of numbers only. If so, is being accepted as a valid input.
         /// </summary>
         /// <param name="linesToPlay"></param>
-        /// <returns>the added credits</returns>
+        /// <returns>the added credits.</returns>
         public static int MoneyToPlay(List<int> linesToPlay)
         {
             while (true)
@@ -35,7 +37,7 @@
         }
 
         /// <summary>
-        /// Prints the line choosing options for user to the console
+        /// Prints the line choosing options for user to the console.
         /// </summary>
         public static void PrintOptions()
         {
@@ -62,8 +64,9 @@
             "\n   7: Diagonal line from top left" +
             "\n   8: Diagonal line from top right");
         }
+
         /// <summary>
-        /// Prints the grid of the slotmachine to the console
+        /// Prints the grid of the slotmachine to the console.
         /// </summary>
         /// <param name="screen"></param>
         public static void DisplayGrid(int[,] screen)
@@ -80,9 +83,52 @@
         }
 
         /// <summary>
-        /// 
+        /// Prompts the user to select the lines that he wants to play.
         /// </summary>
-        /// <returns></returns>
+        public static void SelectLinesPrompt ()
+        {
+            Console.WriteLine("\nPlease select which lines you want to play. " +
+                    "\nEach line is equal with $1 bet and you can keep adding them until you reach maximum number of lines: ");
+        }
+
+        /// <summary>
+        /// Prompts the user if he really wants to exit line selection.
+        /// </summary>
+        public static void ConfirmExitPrompt()
+        {
+            Console.WriteLine("Do you really want to exit the choosing lines process? \nIf so, press 'y' or press any other key to continue adding lines: ");
+        }
+
+        /// <summary>
+        /// Informs the user that maximum number of lines have been reached.
+        /// </summary>
+        public static void MaxLinesReached()
+        {
+            Console.WriteLine("Maximum number of lines to play have been reached.");
+        }
+
+        /// <summary>
+        /// Informs the user that the line he had chose it was added already.
+        /// </summary>
+        /// <param name="chosenLine"></param>
+        public static void LineExisting(int chosenLine)
+        {
+            Console.WriteLine($"The line number {chosenLine} has been added already");
+        }
+
+        /// <summary>
+        /// Informs the user that the line he had chose is incorrect.
+        /// </summary>
+        /// <param name="chosenLine"></param>
+        public static void IncorrectLine(int chosenLine)
+        {
+            Console.WriteLine($"The line {chosenLine} is not correct, please enter another value between 1 and 8.");
+        }
+
+        /// <summary>
+        /// Takes user input and return the line number introduced by the user.
+        /// </summary>
+        /// <returns>Returns the value entered by the user representing the line number.</returns>
         public static int ChooseLine()
         {
             int chosenLine;
@@ -94,69 +140,10 @@
             return 0;
         }
 
-
         /// <summary>
-        /// Takes user Lines and adds them to a list
+        /// Asks user if decides to continue to play with the same values or he wants to change them.
         /// </summary>
-        /// <returns>A list with the lines chosen by the user</returns>
-        public static List<int> ChooseLines()
-        {
-            List<int> linesToPlay = new List<int>();
-            int chosenLine;
-
-            PrintOptions();
-            bool finish = true;
-            while (finish)
-            {
-                Console.WriteLine("\nPlease select which lines you want to play. " +
-                    "\nEach line is equal with $1 bet and you can keep adding them until you reach maximum number of lines: ");
-                bool validNumber = Int32.TryParse(Console.ReadLine(), out chosenLine);
-
-                if (validNumber == false)
-                {
-                    char exitChosingLines;
-                    Console.WriteLine("Do you really want to exit the choosing lines process? \nIf so, press 'y' or press any other key to continue adding lines: ");
-                    Char.TryParse(Console.ReadLine(), out exitChosingLines);
-                    if (exitChosingLines.Equals(Constants.YES_ANSWER))
-                    {
-                        break;
-                    }
-                    else
-                        continue;
-
-                }
-
-                if (linesToPlay.Count >= Constants.MAX_LINE_TO_PLAY)
-                {
-                    Console.WriteLine("Maximum number of lines to play have been reached.");
-                    finish = false;
-                }
-                else if (linesToPlay.Contains(chosenLine))
-                {
-                    Console.WriteLine($"The line number {chosenLine} has been added already");
-                }
-                else if (chosenLine < Constants.MIN_LINE_TO_PLAY || chosenLine > Constants.MAX_LINE_TO_PLAY)
-                {
-                    Console.WriteLine($"The line {chosenLine} is not correct, please enter another value between 1 and 8.");
-                }
-                else
-                {
-                    linesToPlay.Add(chosenLine);
-                }
-            }
-            Console.Write($"Lines that you added are: ");
-
-            foreach (int line in linesToPlay)
-            {
-                Console.Write($" {line}, ");
-            }
-            return linesToPlay;
-        }
-
-        /// <summary>
-        /// Asks user if decides to continue to play with the same values or he wants to change them
-        /// </summary>
-        /// <returns>A boolean value. True if player decides to contiue, false if he decides not to continue</returns>
+        /// <returns>A boolean value. True if player decides to contiue, false if he decides not to continue.</returns>
         public static bool DecideIfContinue()
         {
             char changeValue;
@@ -169,8 +156,9 @@
             return false;
 
         }
+
         /// <summary>
-        /// Displays winnings to the console
+        /// Displays winnings to the console.
         /// </summary>
         /// <param name="winnings"></param>
         public static void DisplayWinnings(int winnings)
@@ -179,22 +167,24 @@
         }
 
         /// <summary>
-        /// Displays credits to the console
+        /// Displays credits to the console.
         /// </summary>
         /// <param name="creditsLeft"></param>
         public static void DisplayCredits(int creditsLeft)
         {
             Console.WriteLine($"Total funds left = {creditsLeft} USD! ");
         }
+
         /// <summary>
-        /// Displays a message for insufficient funds
-        /// </summary>
+        /// Displays a message for insufficient funds.
+        /// </summary>     
         public static void InsufficientFunds()
         {
             Console.WriteLine("Insufficient funds! Please add more.");
         }
+
         /// <summary>
-        /// Player is asked to decide if he wants to exit or continue the game
+        /// Player is asked to decide if he wants to exit or continue the game.
         /// </summary>
         /// <returns>A boolean value. True if player decides to exit the game, false if he decides not to exit the game.</returns>
         public static bool DecideIfExitGame()
