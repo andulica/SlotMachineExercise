@@ -6,7 +6,6 @@
         private const int COUNTER_TO_CHECK_VERTICAL = 4;
         private const int ELEMENT_NUMBER = 3;
         private readonly static Random rnd = new Random();
-        public static List<int> linesToPlay = new List<int>();
         public enum SlotMachineLine
         {
             ALL_HOR = 3,
