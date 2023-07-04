@@ -80,13 +80,38 @@
             }
         }
 
+
         /// <summary>
-        /// Prompts the user to select the lines that he wants to play.
+        /// Prompts the user to select the lines that he wants to play. Also it takes the user input and checks if the entered value is a number.
         /// </summary>
-        public static void SelectLinesPrompt()
+        /// <returns>Returns a int representing the line number or a -1 representing line selection exit</returns>
+        public static int SelectLinesPrompt()
         {
+            int chosenLine;
             Console.WriteLine("\nPlease select which lines you want to play. " +
                     "\nEach line is equal with $1 bet and you can keep adding them until you reach maximum number of lines: ");
+            
+            while (true)
+            {               
+                bool validNumber = Int32.TryParse(Console.ReadLine(), out chosenLine);
+                if (validNumber)
+                {
+                    return chosenLine;
+                }
+
+                else if (validNumber == false)
+                {
+                    char exitChosingLines;
+                    GUI.ConfirmExitPrompt();
+                    Char.TryParse(Console.ReadLine(), out exitChosingLines);
+                    if (exitChosingLines.Equals(Constants.YES_ANSWER))
+                    {
+                        return -1;
+                    }
+                    else
+                        continue;
+                }               
+            }
         }
 
         /// <summary>

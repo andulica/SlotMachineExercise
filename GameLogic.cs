@@ -79,21 +79,12 @@
             bool finish = true;
             while (finish)
             {
-                GUI.SelectLinesPrompt();
-                bool validNumber = Int32.TryParse(Console.ReadLine(), out chosenLine);
-
-                if (validNumber == false)
+                chosenLine = GUI.SelectLinesPrompt();
+                if (chosenLine == Constants.NEGATIVE_NUMBER)
                 {
-                    char exitChosingLines;
-                    GUI.ConfirmExitPrompt();
-                    Char.TryParse(Console.ReadLine(), out exitChosingLines);
-                    if (exitChosingLines.Equals(Constants.YES_ANSWER))
-                    {
-                        break;
-                    }
-                    else
-                        continue;
+                    break;
                 }
+
 
                 if (linesToPlay.Count >= Constants.MAX_LINE_TO_PLAY)
                 {
