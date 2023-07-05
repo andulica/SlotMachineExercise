@@ -53,7 +53,7 @@
         /// Populates a grid 3x3 randomly with values of 1 and 2.
         /// </summary>
         /// <returns>A 2D array.</returns>
-        public static int[,] PopulateGrid()
+        public static int[,] GenerateRandomGrid()
         {
             int[,] screen = new int[Constants.GRID_SIZE, Constants.GRID_SIZE];
             for (int row = 0; row < Constants.GRID_SIZE; row++)
@@ -72,14 +72,14 @@
         /// <param name="chosenLine"></param>
         /// <param name="linesToPlay"></param>
         /// <returns>Returns a list with lines to play.</returns>
-        public static List<int> AddLineToList ()
+        public static List<int> AddLinesToList ()
         {
             List<int> linesToPlay = new List<int>();
             int chosenLine;
             bool finish = true;
             while (finish)
             {
-                chosenLine = GUI.SelectLinesPrompt();
+                chosenLine = GUI.GetValidLineSelection();
                 if (chosenLine == Constants.NEGATIVE_NUMBER)
                 {
                     break;
@@ -88,16 +88,16 @@
 
                 if (linesToPlay.Count >= Constants.MAX_LINE_TO_PLAY)
                 {
-                    GUI.MaxLinesReached();
+                    GUI.DisplayMaxLinesReachedMessage();
                     finish = false;
                 }
                 else if (linesToPlay.Contains(chosenLine))
                 {
-                    GUI.LineExisting(chosenLine);
+                    GUI.AlertLineAlreadyAdded(chosenLine);
                 }
                 else if (chosenLine < Constants.MIN_LINE_TO_PLAY || chosenLine > Constants.MAX_LINE_TO_PLAY)
                 {
-                    GUI.IncorrectLine(chosenLine);
+                    GUI.AlertIncorrectLine(chosenLine);
                 }
                 else
                 {
