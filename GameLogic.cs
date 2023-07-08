@@ -12,7 +12,7 @@
             ALL_VER = 6,
             DIAG_TL = 7,
             DIAG_TR = 8
-        }     
+        }
 
         /// <summary>
         /// Checks if there are any matching lines. If matches are found, total credits won are returned.
@@ -72,7 +72,7 @@
         /// <param name="chosenLine"></param>
         /// <param name="linesToPlay"></param>
         /// <returns>Returns a list with lines to play.</returns>
-        public static List<int> AddLinesToList ()
+        public static List<int> AddLinesToList()
         {
             List<int> linesToPlay = new List<int>();
             int chosenLine;
@@ -85,24 +85,23 @@
                     break;
                 }
 
-
                 if (linesToPlay.Count >= Constants.MAX_LINE_TO_PLAY)
                 {
                     GUI.DisplayMaxLinesReachedMessage();
                     finish = false;
                 }
-                else if (linesToPlay.Contains(chosenLine))
+
+                if (linesToPlay.Contains(chosenLine))
                 {
                     GUI.AlertLineAlreadyAdded(chosenLine);
                 }
-                else if (chosenLine < Constants.MIN_LINE_TO_PLAY || chosenLine > Constants.MAX_LINE_TO_PLAY)
+
+                if (chosenLine < Constants.MIN_LINE_TO_PLAY || chosenLine > Constants.MAX_LINE_TO_PLAY)
                 {
                     GUI.AlertIncorrectLine(chosenLine);
                 }
-                else
-                {
-                    linesToPlay.Add(chosenLine);
-                }
+
+                linesToPlay.Add(chosenLine);
             }
             return linesToPlay;
         }
