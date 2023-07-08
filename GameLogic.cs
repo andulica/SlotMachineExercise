@@ -23,24 +23,20 @@
         public static int CheckAllLines(List<int> linesToPlay, int[,] grid)
         {
             int winnings = 0;
-
             for (int i = 0; i < linesToPlay.Count; i++)
             {
                 if (linesToPlay[i] <= (int)SlotMachineLine.ALL_HOR)
                 {
                     winnings += CheckHorizontal(grid, linesToPlay[i] - COUNTER_TO_CHECK_HORIZONTAL);
                 }
-
                 if (linesToPlay[i] > (int)SlotMachineLine.ALL_HOR && linesToPlay[i] <= (int)SlotMachineLine.ALL_VER)
                 {
                     winnings += CheckVertical(grid, linesToPlay[i] - COUNTER_TO_CHECK_VERTICAL);
                 }
-
                 if (linesToPlay[i] == (int)SlotMachineLine.DIAG_TL)
                 {
                     winnings += CheckDiagonalTopLeft(grid);
                 }
-
                 if (linesToPlay[i] == (int)SlotMachineLine.DIAG_TR)
                 {
                     winnings += CheckDiagonalTopRight(grid);
@@ -84,23 +80,19 @@
                 {
                     break;
                 }
-
                 if (linesToPlay.Count >= Constants.MAX_LINE_TO_PLAY)
                 {
                     GUI.DisplayMaxLinesReachedMessage();
                     finish = false;
                 }
-
                 if (linesToPlay.Contains(chosenLine))
                 {
                     GUI.AlertLineAlreadyAdded(chosenLine);
                 }
-
                 if (chosenLine < Constants.MIN_LINE_TO_PLAY || chosenLine > Constants.MAX_LINE_TO_PLAY)
                 {
                     GUI.AlertIncorrectLine(chosenLine);
                 }
-
                 linesToPlay.Add(chosenLine);
             }
             return linesToPlay;

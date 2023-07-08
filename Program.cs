@@ -10,7 +10,7 @@
             int[,] grid;
             int winnings;
             bool quit = false;
-            
+
             // Keeps playing until user decides to quit the game.
             while (true)
             {
@@ -34,7 +34,7 @@
                     GUI.AlertInsufficientFunds();
                     credits += GUI.GetMoneyToPlay();
                 }
-                
+
                 if (quit)
                 {
                     break;
