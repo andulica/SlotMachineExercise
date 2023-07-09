@@ -103,10 +103,22 @@
         /// </summary>
         /// <param name="grid"></param>
         /// <param name="lineToCheck"></param>
-        /// <returns>A Integer representing the winnings on horizontal lines.</returns>
+        /// <returns>A Integer representing 1 credit won per horizontal line.</returns>
         private static int CheckHorizontal(int[,] grid, int lineToCheck)
         {
-            return (grid[lineToCheck, 0] == grid[lineToCheck, 1] && grid[lineToCheck, 0] == grid[lineToCheck, 2]) ? 1 : 0;
+            int matchingsFound = 0;                     
+            for (int i = Constants.GRID_SIZE - 1; i > 0; i--)
+            {
+                if (grid[lineToCheck, 0] == grid[lineToCheck,i])
+                {
+                    matchingsFound++;
+                }
+            }
+            if (matchingsFound == Constants.GRID_SIZE - 1)
+            {
+                return 1;
+            }
+            return 0;
         }
 
         /// <summary>
@@ -114,10 +126,22 @@
         /// </summary>
         /// <param name="grid"></param>
         /// <param name="lineToCheck"></param>
-        /// <returns>A Integer representing the winnings on vertical lines.</returns>
+        /// <returns>A Integer representing 1 credit won per vertical line.</returns>
         private static int CheckVertical(int[,] grid, int lineToCheck)
         {
-            return (grid[0, lineToCheck] == grid[1, lineToCheck] && grid[0, lineToCheck] == grid[2, lineToCheck]) ? 1 : 0;
+            int matchingsFound = 0;
+            for (int i = Constants.GRID_SIZE - 1; i > 0; i--)
+            {
+                if (grid[0, lineToCheck] == grid[i, lineToCheck])
+                {
+                    matchingsFound++;
+                }
+            }
+            if (matchingsFound == Constants.GRID_SIZE - 1)
+            {
+                return 1;
+            }
+            return 0;
         }
 
         /// <summary>
