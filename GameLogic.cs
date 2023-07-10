@@ -145,23 +145,41 @@
         }
 
         /// <summary>
-        /// Checks if player won on diagonal line starting from top left corner.
+        /// Checks if player won on the diagonal line starting from top left corner.
         /// </summary>
         /// <param name="grid"></param>
         /// <returns>A Integer representing the win on vertical line starting from top left corner.</returns>
         private static int CheckDiagonalTopLeft(int[,] grid)
         {
-            return (grid[0, 0] == grid[1, 1] && grid[0, 0] == grid[2, 2]) ? 1 : 0;
+            int matchingsFound = 0;
+            int valueToCompare = grid[0, 0];
+            for (int i = Constants.GRID_SIZE - 1; i > 0; i--)
+            {
+                if (valueToCompare == grid[i,i])
+                {
+                    matchingsFound++;
+                }                              
+            }
+            return (matchingsFound == Constants.GRID_SIZE - 1) ? 1 : 0;
         }
 
         /// <summary>
-        /// Checks if player won on diagonal line starting from top right corner.
+        /// Checks if player won on the diagonal line starting from top right corner.
         /// </summary>
         /// <param name="grid"></param>
         /// <returns>A Integer representing the win on vertical line starting from top right corner.</returns>
         private static int CheckDiagonalTopRight(int[,] grid)
         {
-            return (grid[0, 2] == grid[1, 1] && grid[0, 2] == grid[2, 0]) ? 1 : 0;
+            int matchingsFound = 0;
+            int firstValue = grid[Constants.GRID_SIZE - 1, 0];
+            for (int i = 0; i < Constants.GRID_SIZE - 1; i++)
+            {              
+                if (firstValue == grid[i, (Constants.GRID_SIZE - 1) - i])
+                {
+                    matchingsFound++;
+                }                
+            }
+            return (matchingsFound == Constants.GRID_SIZE - 1) ? 1 : 0;
         }
     }
 }
