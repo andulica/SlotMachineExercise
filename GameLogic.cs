@@ -6,12 +6,12 @@
         private const int COUNTER_TO_CHECK_VERTICAL = 4;
         private const int ELEMENT_NUMBER = 3;
         private readonly static Random rnd = new Random();
-        public enum SlotMachineLine
+        public enum WinningLinesThresholds
         {
-            ALL_HOR = 3,
-            ALL_VER = 6,
-            DIAG_TL = 7,
-            DIAG_TR = 8
+            CHECK_ALL_HORIZONTAL = 3,
+            CHECK_ALL_VERTICAL = 6,
+            CHECK_DIAGONAL_TOP_LEFT = 7,
+            CHECK_DIAGONAL_TOP_RIGHT = 8
         }
 
         /// <summary>
@@ -25,19 +25,19 @@
             int winnings = 0;
             for (int i = 0; i < linesToPlay.Count; i++)
             {
-                if (linesToPlay[i] <= (int)SlotMachineLine.ALL_HOR)
+                if (linesToPlay[i] <= (int)WinningLinesThresholds.CHECK_ALL_HORIZONTAL)
                 {
                     winnings += CheckHorizontal(grid, linesToPlay[i] - COUNTER_TO_CHECK_HORIZONTAL);
                 }
-                if (linesToPlay[i] > (int)SlotMachineLine.ALL_HOR && linesToPlay[i] <= (int)SlotMachineLine.ALL_VER)
+                if (linesToPlay[i] > (int)WinningLinesThresholds.CHECK_ALL_HORIZONTAL && linesToPlay[i] <= (int)WinningLinesThresholds.CHECK_ALL_VERTICAL)
                 {
                     winnings += CheckVertical(grid, linesToPlay[i] - COUNTER_TO_CHECK_VERTICAL);
                 }
-                if (linesToPlay[i] == (int)SlotMachineLine.DIAG_TL)
+                if (linesToPlay[i] == (int)WinningLinesThresholds.CHECK_DIAGONAL_TOP_LEFT)
                 {
                     winnings += CheckDiagonalTopLeft(grid);
                 }
-                if (linesToPlay[i] == (int)SlotMachineLine.DIAG_TR)
+                if (linesToPlay[i] == (int)WinningLinesThresholds.CHECK_DIAGONAL_TOP_RIGHT)
                 {
                     winnings += CheckDiagonalTopRight(grid);
                 }

@@ -114,7 +114,7 @@
                     }
                 }
             }
-            return -1;
+            return Constants.NEGATIVE_RETURN_VALUE;
         }
 
         /// <summary>
@@ -169,7 +169,7 @@
         /// <summary>
         /// Asks user if decides to continue to play with the same values or he wants to change them.
         /// </summary>
-        /// <returns>A boolean value. True if player decides to contiue, false if he decides not to continue.</returns>
+        /// <returns>A bool value. True if player decides to continue, false if he decides not to continue.</returns>
         public static bool GetUserContinueDecision()
         {
             char changeValue;
@@ -231,7 +231,7 @@
         /// <summary>
         /// Player is asked to decide if he wants to exit or continue the game.
         /// </summary>
-        /// <returns>A boolean value. True if player decides to exit the game, false if he decides not to exit the game.</returns>
+        /// <returns>A bool value. True if player decides to exit the game, false if he decides not to exit the game.</returns>
         public static bool GetUserExitGameDecision()
         {
             char exitAnswer;
