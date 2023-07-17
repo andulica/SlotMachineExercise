@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace SlotMachineExercise
+﻿namespace SlotMachineExercise
 {
     internal class GameLogic
     {
@@ -86,112 +84,111 @@ namespace SlotMachineExercise
                 if (chosenLine >= Constants.MIN_LINE_TO_PLAY && chosenLine <= Constants.MAX_LINE_TO_PLAY)
                 {
                     linesToPlay.Add(chosenLine);
-                    
+
                 }
                 if (linesToPlay.Count >= Constants.MAX_LINE_TO_PLAY)
                 {
                     GUI.DisplayMaxLinesReachedMessage();
                     finish = true;
                 }
-             
+
                 if (chosenLine < Constants.MIN_LINE_TO_PLAY || chosenLine > Constants.MAX_LINE_TO_PLAY)
                 {
                     GUI.AlertIncorrectLine(chosenLine);
                 }
             }
-
             return linesToPlay;
         }
-        
 
-    /// <summary>
-    /// Checks if player won on horizontal lines.
-    /// </summary>
-    /// <param name="grid"></param>
-    /// <param name="lineToCheck"></param>
-    /// <returns>A Integer representing 1 credit won per horizontal line.</returns>
-    private static int CheckHorizontal(int[,] grid, int lineToCheck)
-    {
-        int matchingsFound = 0;
-        for (int i = Constants.GRID_SIZE - 1; i > 0; i--)
+
+        /// <summary>
+        /// Checks if player won on horizontal lines.
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <param name="lineToCheck"></param>
+        /// <returns>A Integer representing 1 credit won per horizontal line.</returns>
+        private static int CheckHorizontal(int[,] grid, int lineToCheck)
         {
-            if (grid[lineToCheck, 0] != grid[lineToCheck, i])
+            int matchingsFound = 0;
+            for (int i = Constants.GRID_SIZE - 1; i > 0; i--)
             {
-                return 0;
+                if (grid[lineToCheck, 0] != grid[lineToCheck, i])
+                {
+                    return 0;
 
+                }
+                else
+                {
+                    matchingsFound++;
+                }
+
+                if (matchingsFound == Constants.GRID_SIZE - 1)
+                {
+                    return 1;
+                }
             }
-            else
+            return 1;
+        }
+
+        /// <summary>
+        /// Checks if player won on vertical lines.
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <param name="lineToCheck"></param>
+        /// <returns>A Integer representing 1 credit won per vertical line.</returns>
+        private static int CheckVertical(int[,] grid, int lineToCheck)
+        {
+            int matchingsFound = 0;
+            for (int i = Constants.GRID_SIZE - 1; i > 0; i--)
             {
-                matchingsFound++;
+                if (grid[0, lineToCheck] == grid[i, lineToCheck])
+                {
+                    matchingsFound++;
+                }
             }
-
             if (matchingsFound == Constants.GRID_SIZE - 1)
             {
                 return 1;
             }
+            return 0;
         }
-        return 1;
-    }
 
-    /// <summary>
-    /// Checks if player won on vertical lines.
-    /// </summary>
-    /// <param name="grid"></param>
-    /// <param name="lineToCheck"></param>
-    /// <returns>A Integer representing 1 credit won per vertical line.</returns>
-    private static int CheckVertical(int[,] grid, int lineToCheck)
-    {
-        int matchingsFound = 0;
-        for (int i = Constants.GRID_SIZE - 1; i > 0; i--)
+        /// <summary>
+        /// Checks if player won on the diagonal line starting from top left corner.
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <returns>A Integer representing the win on vertical line starting from top left corner.</returns>
+        private static int CheckDiagonalTopLeft(int[,] grid)
         {
-            if (grid[0, lineToCheck] == grid[i, lineToCheck])
+            int matchingsFound = 0;
+            int valueToCompare = grid[0, 0];
+            for (int i = Constants.GRID_SIZE - 1; i > 0; i--)
             {
-                matchingsFound++;
+                if (valueToCompare == grid[i, i])
+                {
+                    matchingsFound++;
+                }
             }
+            return (matchingsFound == Constants.GRID_SIZE - 1) ? 1 : 0;
         }
-        if (matchingsFound == Constants.GRID_SIZE - 1)
-        {
-            return 1;
-        }
-        return 0;
-    }
 
-    /// <summary>
-    /// Checks if player won on the diagonal line starting from top left corner.
-    /// </summary>
-    /// <param name="grid"></param>
-    /// <returns>A Integer representing the win on vertical line starting from top left corner.</returns>
-    private static int CheckDiagonalTopLeft(int[,] grid)
-    {
-        int matchingsFound = 0;
-        int valueToCompare = grid[0, 0];
-        for (int i = Constants.GRID_SIZE - 1; i > 0; i--)
+        /// <summary>
+        /// Checks if player won on the diagonal line starting from top right corner.
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <returns>A Integer representing the win on vertical line starting from top right corner.</returns>
+        private static int CheckDiagonalTopRight(int[,] grid)
         {
-            if (valueToCompare == grid[i, i])
+            int matchingsFound = 0;
+            int firstValue = grid[Constants.GRID_SIZE - 1, 0];
+            for (int i = 0; i < Constants.GRID_SIZE - 1; i++)
             {
-                matchingsFound++;
+                if (firstValue == grid[i, (Constants.GRID_SIZE - 1) - i])
+                {
+                    matchingsFound++;
+                }
             }
+            return (matchingsFound == Constants.GRID_SIZE - 1) ? 1 : 0;
         }
-        return (matchingsFound == Constants.GRID_SIZE - 1) ? 1 : 0;
     }
-
-    /// <summary>
-    /// Checks if player won on the diagonal line starting from top right corner.
-    /// </summary>
-    /// <param name="grid"></param>
-    /// <returns>A Integer representing the win on vertical line starting from top right corner.</returns>
-    private static int CheckDiagonalTopRight(int[,] grid)
-    {
-        int matchingsFound = 0;
-        int firstValue = grid[Constants.GRID_SIZE - 1, 0];
-        for (int i = 0; i < Constants.GRID_SIZE - 1; i++)
-        {
-            if (firstValue == grid[i, (Constants.GRID_SIZE - 1) - i])
-            {
-                matchingsFound++;
-            }
-        }
-        return (matchingsFound == Constants.GRID_SIZE - 1) ? 1 : 0;
-    }
-}
 }

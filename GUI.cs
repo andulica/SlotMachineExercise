@@ -87,19 +87,19 @@
         /// <returns>Returns a int representing the line number or a -1 representing line selection exit</returns>
         public static int GetValidLineSelection()
         {
-            
+
             int chosenLine;
             Console.WriteLine("\nPlease select which lines you want to play. " +
                     "\nEach line is equal with $1 bet and you can keep adding them until you reach maximum number of lines: ");
             while (true)
             {
-                bool validNumber = Int32.TryParse(Console.ReadLine(), out chosenLine);   
-                
+                bool validNumber = Int32.TryParse(Console.ReadLine(), out chosenLine);
+
                 if (validNumber)
                 {
                     return chosenLine;
                 }
-                else 
+                else
                 {
                     char exitChoosingLines;
                     GUI.ConfirmLineSelectionExitPrompt();
@@ -109,7 +109,7 @@
                         break;
                     }
                     else
-                    { 
+                    {
                         continue;
                     }
                 }
