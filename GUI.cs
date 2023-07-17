@@ -87,24 +87,26 @@
         /// <returns>Returns a int representing the line number or a -1 representing line selection exit</returns>
         public static int GetValidLineSelection()
         {
+            
             int chosenLine;
             Console.WriteLine("\nPlease select which lines you want to play. " +
                     "\nEach line is equal with $1 bet and you can keep adding them until you reach maximum number of lines: ");
             while (true)
             {
-                bool validNumber = Int32.TryParse(Console.ReadLine(), out chosenLine);
+                bool validNumber = Int32.TryParse(Console.ReadLine(), out chosenLine);   
+                
                 if (validNumber)
                 {
                     return chosenLine;
                 }
                 else 
                 {
-                    char exitChosingLines;
+                    char exitChoosingLines;
                     GUI.ConfirmLineSelectionExitPrompt();
-                    Char.TryParse(Console.ReadLine(), out exitChosingLines);
-                    if (exitChosingLines.Equals(Constants.YES_ANSWER))
+                    Char.TryParse(Console.ReadLine(), out exitChoosingLines);
+                    if (exitChoosingLines.Equals(Constants.YES_ANSWER))
                     {
-                        return -1;
+                        break;
                     }
                     else
                     { 
@@ -112,6 +114,7 @@
                     }
                 }
             }
+            return -1;
         }
 
         /// <summary>
@@ -170,7 +173,7 @@
         public static bool GetUserContinueDecision()
         {
             char changeValue;
-            Console.WriteLine("If you wish to change the lines, please press 'm', \notherwise continue playing with the same values by pressing any key: ");
+            Console.WriteLine("If you wish to change the lines, please press 'm', \n otherwise continue playing with the same values by pressing any key: ");
             bool changeValueTrue = Char.TryParse(Console.ReadLine(), out changeValue);
             if (changeValue.Equals(Constants.MODIFY_ANSWER))
             {
@@ -179,6 +182,13 @@
             return false;
         }
 
+        /// <summary>
+        /// Displays a message for invalid user input.
+        /// </summary>
+        public static void AlertNegativeNumber()
+        {
+            Console.WriteLine("No negative numbers are accepted.");
+        }
         /// <summary>
         /// Displays winnings to the console.
         /// </summary>
