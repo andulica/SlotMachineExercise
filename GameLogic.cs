@@ -25,18 +25,22 @@
             int winnings = 0;
             for (int i = 0; i < linesToPlay.Count; i++)
             {
+
                 if (linesToPlay[i] <= (int)WinningLinesThresholds.CHECK_ALL_HORIZONTAL)
                 {
                     winnings += CheckHorizontal(grid, linesToPlay[i] - COUNTER_TO_CHECK_HORIZONTAL);
                 }
+
                 if (linesToPlay[i] > (int)WinningLinesThresholds.CHECK_ALL_HORIZONTAL && linesToPlay[i] <= (int)WinningLinesThresholds.CHECK_ALL_VERTICAL)
                 {
                     winnings += CheckVertical(grid, linesToPlay[i] - COUNTER_TO_CHECK_VERTICAL);
                 }
+
                 if (linesToPlay[i] == (int)WinningLinesThresholds.CHECK_DIAGONAL_TOP_LEFT)
                 {
                     winnings += CheckDiagonalTopLeft(grid);
                 }
+
                 if (linesToPlay[i] == (int)WinningLinesThresholds.CHECK_DIAGONAL_TOP_RIGHT)
                 {
                     winnings += CheckDiagonalTopRight(grid);
@@ -77,15 +81,18 @@
             while (!finish)
             {
                 chosenLine = GUI.GetValidLineSelection();
+
                 if (linesToPlay.Contains(chosenLine))
                 {
                     GUI.AlertLineAlreadyAdded(chosenLine);
                 }
+
                 if (chosenLine >= Constants.MIN_LINE_TO_PLAY && chosenLine <= Constants.MAX_LINE_TO_PLAY)
                 {
                     linesToPlay.Add(chosenLine);
 
                 }
+
                 if (linesToPlay.Count >= Constants.MAX_LINE_TO_PLAY)
                 {
                     GUI.DisplayMaxLinesReachedMessage();
@@ -146,6 +153,7 @@
                     matchingsFound++;
                 }
             }
+
             if (matchingsFound == Constants.GRID_SIZE - 1)
             {
                 return 1;

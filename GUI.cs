@@ -103,6 +103,7 @@
                 char exitChoosingLines;
                 GUI.ConfirmLineSelectionExitPrompt();
                 Char.TryParse(Console.ReadLine(), out exitChoosingLines);
+
                 if (exitChoosingLines.Equals(Constants.YES_ANSWER))
                 {
                     break;
@@ -169,6 +170,7 @@
             char changeValue;
             Console.WriteLine("If you wish to change the lines, please press 'm', \n otherwise continue playing with the same values by pressing any key: ");
             bool changeValueTrue = Char.TryParse(Console.ReadLine(), out changeValue);
+
             if (changeValue.Equals(Constants.MODIFY_ANSWER))
             {
                 return changeValueTrue;
@@ -231,11 +233,13 @@
             char exitAnswer;
             Console.WriteLine("\nYou don't enough credits to play. Do you want to quit the game? \nPress 'y' to exit or any other key to continue: ");
             bool userInputExit = Char.TryParse(Console.ReadLine(), out exitAnswer);
+
             if (exitAnswer.Equals(Constants.YES_ANSWER))
             {
                 Console.WriteLine("Thank you for playing our game!");
                 return userInputExit;
             }
+
             Console.WriteLine("You have chosen to continue!");
             return false;
         }
