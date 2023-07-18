@@ -99,19 +99,13 @@
                 {
                     return chosenLine;
                 }
-                else
+
+                char exitChoosingLines;
+                GUI.ConfirmLineSelectionExitPrompt();
+                Char.TryParse(Console.ReadLine(), out exitChoosingLines);
+                if (exitChoosingLines.Equals(Constants.YES_ANSWER))
                 {
-                    char exitChoosingLines;
-                    GUI.ConfirmLineSelectionExitPrompt();
-                    Char.TryParse(Console.ReadLine(), out exitChoosingLines);
-                    if (exitChoosingLines.Equals(Constants.YES_ANSWER))
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        continue;
-                    }
+                    break;
                 }
             }
             return Constants.NEGATIVE_RETURN_VALUE;
