@@ -167,15 +167,13 @@
         /// <returns>A bool value. True if player decides to continue, false if he decides not to continue.</returns>
         public static bool GetUserContinueDecision()
         {
-            char changeValue;
             Console.WriteLine("If you wish to change the lines, please press 'm', \n otherwise continue playing with the same values by pressing any key: ");
-            bool changeValueTrue = Char.TryParse(Console.ReadLine(), out changeValue);
-
-            if (changeValue.Equals(Constants.MODIFY_ANSWER))
+            char changeValue;
+            if (!Char.TryParse(Console.ReadLine(), out changeValue)) // returns false if value could not be parsed
             {
-                return changeValueTrue;
+                return false;
             }
-            return false;
+            return (changeValue.Equals(Constants.MODIFY_ANSWER)); // returns if the user wants to continue or not
         }
 
         /// <summary>
