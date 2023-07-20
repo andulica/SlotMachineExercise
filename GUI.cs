@@ -19,13 +19,13 @@
         {
             while (true)
             {
-                Console.WriteLine("Please enter the ammount of money you want to gamble: ");
+                Console.WriteLine("Please enter the amount of money you want to gamble: ");
                 String stringCredits = Console.ReadLine();
                 int credits;
 
                 if (!int.TryParse(stringCredits, out credits))
                 {
-                    Console.WriteLine("Please enter any ammount of money represented in numbers only");
+                    Console.WriteLine("Please enter any amount of money represented in numbers only");
                 }
                 else
                 {
@@ -214,16 +214,7 @@
         /// <param name="chosenLines"></param>
         public static void DisplayChosenLines(List<int> chosenLines)
         {
-            Console.Write($"Lines that you added are: ");
-
-            //for (int i = 0; i < chosenLines.Count; i++)
-            //{
-            //    Console.Write(chosenLines[i] + ", ");
-            //}
-            foreach (int line in chosenLines)
-            {
-                Console.Write($" {line}, ");
-            }
+            Console.Write($"Lines that you added are: {string.Join(", ", chosenLines)} \n");
         }
 
         /// <summary>
