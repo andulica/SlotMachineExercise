@@ -82,6 +82,11 @@
             {
                 chosenLine = GUI.GetValidLineSelection();
 
+                if(chosenLine == Constants.EXIT_CHOOSE_LINE_VALUE)
+                {
+                    break;
+                }
+
                 if (linesToPlay.Contains(chosenLine))
                 {
                     GUI.AlertLineAlreadyAdded(chosenLine);

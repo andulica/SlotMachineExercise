@@ -7,6 +7,6 @@
         public const int GRID_SIZE = 3;
         public const char YES_ANSWER = 'y';
         public const char MODIFY_ANSWER = 'm';
-        public const int NEGATIVE_RETURN_VALUE = -1;
+        public const int EXIT_CHOOSE_LINE_VALUE = Int32.MaxValue;
     }
 }

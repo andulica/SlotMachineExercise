@@ -87,7 +87,6 @@
         /// <returns>Returns a int representing the line number or a -1 representing line selection exit</returns>
         public static int GetValidLineSelection()
         {
-
             int chosenLine;
             Console.WriteLine("\nPlease select which lines you want to play. " +
                     "\nEach line is equal with $1 bet and you can keep adding them until you reach maximum number of lines: ");
@@ -109,7 +108,7 @@
                     break;
                 }
             }
-            return Constants.NEGATIVE_RETURN_VALUE;
+            return Constants.EXIT_CHOOSE_LINE_VALUE;
         }
 
         /// <summary>
@@ -216,6 +215,11 @@
         public static void DisplayChosenLines(List<int> chosenLines)
         {
             Console.Write($"Lines that you added are: ");
+
+            //for (int i = 0; i < chosenLines.Count; i++)
+            //{
+            //    Console.Write(chosenLines[i] + ", ");
+            //}
             foreach (int line in chosenLines)
             {
                 Console.Write($" {line}, ");
